@@ -21,5 +21,17 @@ By the end of this tutorial, you should be able to ...
 2. Become more comfortable with delegate flow, when passing data through views!
 3. Implement real time messaging within your application!
 
+## Using Git/Github
+As you go though this tutorial you will be making substantial progress towards creating chatrooms and messaging others! It would be a shame if that progress were to be lost. To avoid this, be sure to make regular commits to your github repo containing the project. By implementing version control for your application not only are you helping yourself in detecting bugs during states of your application but also strengthening your engineering practices!
 
-## Tutorial Structure
+## Technical Planning
+
+Now that we have discussed the logistics of the application, let us take a look at the roadmap we are going to be following throughout this project!
+
+1. Implement event listeners and emitters to communicate with your node server!
+
+2. Connecting a user by creating a valid socket connection to the server!
+
+3. Be able to create and join a room!
+
+4. Message other individuals in a room in real time!
