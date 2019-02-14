@@ -4,7 +4,7 @@ This tutorial is centered around the use of socket communication so it is only r
 
 A web socket can be thought of as a pipeline that is used to transmit data between client and server. As opposed to a typical http request, when the request is made and resolved the connection doesn't close automatically. The web socket connection remains open to be able to listen and repond to new events.
 
-#### Insert picture of bi directional data flow
+![Bi-Directional Communication](/assets/RealSocketExample.jpg)
 With a web socket connection both ends of the connection aka the client and the server can communication with each other. Often named as bi-directional data flow! By allowing data to flow both ways the server and client can equally listen and react to incoming events.
 
 #### Insert picture of multiple clients connecting to server
