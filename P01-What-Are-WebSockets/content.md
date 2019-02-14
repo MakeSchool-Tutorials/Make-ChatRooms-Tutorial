@@ -13,3 +13,5 @@ The server can be thought of as a traffic cop. Their job is to be able to coordi
 If we look at the illustration above when a new client enters we open a connection between the client and the server. All these connections remain open for the purpose of being able to react and listen to oncoming events from other clients, in which the server is in charge of coordinating!
 #####
 As you progress through the tutorial you will see the direct application of socket communication between client and server!
+#####
+In the following tutorial we'll be using Socket.io one of the most reliable npm modules on the web that enables node servers to respond to event-driven WebSocket behaviors. Socket.io is a broad and powerful library that can manage multiple channels, rooms, and manage https and other forms of security. In our case we will be implementing a simple asynchronous push of data from the server to the client.
