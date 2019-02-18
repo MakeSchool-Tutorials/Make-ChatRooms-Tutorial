@@ -13,6 +13,12 @@
 		1C04670E221B30EF00EFCC5F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1C04670D221B30EF00EFCC5F /* Assets.xcassets */; };
 		1C046711221B30EF00EFCC5F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1C04670F221B30EF00EFCC5F /* LaunchScreen.storyboard */; };
 		1C04671C221B30EF00EFCC5F /* Make_ChatRooms_StarterKitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C04671B221B30EF00EFCC5F /* Make_ChatRooms_StarterKitTests.swift */; };
+		1C04672D221B323D00EFCC5F /* CreateUserView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1C04672C221B323D00EFCC5F /* CreateUserView.xib */; };
+		1C04672F221B324900EFCC5F /* CreateUserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C04672E221B324900EFCC5F /* CreateUserView.swift */; };
+		1C046731221B32B000EFCC5F /* MessageInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C046730221B32B000EFCC5F /* MessageInputView.swift */; };
+		1C046733221B32E500EFCC5F /* Layouts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C046732221B32E500EFCC5F /* Layouts.swift */; };
+		1C046735221B32F800EFCC5F /* protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C046734221B32F800EFCC5F /* protocols.swift */; };
+		1C046737221B330400EFCC5F /* ChatRoom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C046736221B330400EFCC5F /* ChatRoom.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,6 +42,12 @@
 		1C046717221B30EF00EFCC5F /* Make-ChatRooms-StarterKitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Make-ChatRooms-StarterKitTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1C04671B221B30EF00EFCC5F /* Make_ChatRooms_StarterKitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Make_ChatRooms_StarterKitTests.swift; sourceTree = "<group>"; };
 		1C04671D221B30EF00EFCC5F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		1C04672C221B323D00EFCC5F /* CreateUserView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CreateUserView.xib; sourceTree = "<group>"; };
+		1C04672E221B324900EFCC5F /* CreateUserView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateUserView.swift; sourceTree = "<group>"; };
+		1C046730221B32B000EFCC5F /* MessageInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageInputView.swift; sourceTree = "<group>"; };
+		1C046732221B32E500EFCC5F /* Layouts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Layouts.swift; sourceTree = "<group>"; };
+		1C046734221B32F800EFCC5F /* protocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = protocols.swift; sourceTree = "<group>"; };
+		1C046736221B330400EFCC5F /* ChatRoom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRoom.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,12 +89,12 @@
 		1C046705221B30EE00EFCC5F /* Make-ChatRooms-StarterKit */ = {
 			isa = PBXGroup;
 			children = (
-				1C04672B221B318600EFCC5F /* Controllers */,
-				1C04672A221B318000EFCC5F /* Cells */,
 				1C046729221B317B00EFCC5F /* Models */,
-				1C046728221B317100EFCC5F /* ChatRoom */,
-				1C046727221B316A00EFCC5F /* Helpers */,
 				1C046726221B315100EFCC5F /* Views */,
+				1C04672B221B318600EFCC5F /* Controllers */,
+				1C046728221B317100EFCC5F /* ChatRoom */,
+				1C04672A221B318000EFCC5F /* Cells */,
+				1C046727221B316A00EFCC5F /* Helpers */,
 				1C046706221B30EE00EFCC5F /* AppDelegate.swift */,
 				1C046708221B30EE00EFCC5F /* ViewController.swift */,
 				1C04670A221B30EE00EFCC5F /* Main.storyboard */,
@@ -105,6 +117,8 @@
 		1C046726221B315100EFCC5F /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				1C04672C221B323D00EFCC5F /* CreateUserView.xib */,
+				1C04672E221B324900EFCC5F /* CreateUserView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -112,6 +126,9 @@
 		1C046727221B316A00EFCC5F /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				1C046730221B32B000EFCC5F /* MessageInputView.swift */,
+				1C046732221B32E500EFCC5F /* Layouts.swift */,
+				1C046734221B32F800EFCC5F /* protocols.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -119,6 +136,7 @@
 		1C046728221B317100EFCC5F /* ChatRoom */ = {
 			isa = PBXGroup;
 			children = (
+				1C046736221B330400EFCC5F /* ChatRoom.swift */,
 			);
 			path = ChatRoom;
 			sourceTree = "<group>";
@@ -226,6 +244,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				1C046711221B30EF00EFCC5F /* LaunchScreen.storyboard in Resources */,
+				1C04672D221B323D00EFCC5F /* CreateUserView.xib in Resources */,
 				1C04670E221B30EF00EFCC5F /* Assets.xcassets in Resources */,
 				1C04670C221B30EE00EFCC5F /* Main.storyboard in Resources */,
 			);
@@ -246,6 +265,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				1C046709221B30EE00EFCC5F /* ViewController.swift in Sources */,
+				1C046731221B32B000EFCC5F /* MessageInputView.swift in Sources */,
+				1C046733221B32E500EFCC5F /* Layouts.swift in Sources */,
+				1C046735221B32F800EFCC5F /* protocols.swift in Sources */,
+				1C046737221B330400EFCC5F /* ChatRoom.swift in Sources */,
+				1C04672F221B324900EFCC5F /* CreateUserView.swift in Sources */,
 				1C046707221B30EE00EFCC5F /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
