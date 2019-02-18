@@ -10,7 +10,7 @@ A web socket can be thought of as a pipeline that is used to transmit data betwe
 
 2. Once the connection is opened the data that is able to flow between server and client is Bi-Directional meaning that data can be recieved and emitted from both parties!
 
-3. Unlike typical HTTP requests once the connection is made and the request is resolved the connection does not automatically close. Either end of the socket connection has to explicitly close the socket connection!t
+3. Unlike typical HTTP requests once the connection is made and the request is resolved the connection does not automatically close. Either end of the socket connection has to explicitly close the socket connection!
 #####
 With a web socket connection both ends of the connection aka the client and the server can communication with each other. Often named as bi-directional data flow! By allowing data to flow both ways the server and client can equally listen and react to incoming events.
 #### 
