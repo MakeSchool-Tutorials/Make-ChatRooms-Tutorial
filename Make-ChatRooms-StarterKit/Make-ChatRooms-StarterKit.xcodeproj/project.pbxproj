@@ -77,6 +77,12 @@
 		1C046705221B30EE00EFCC5F /* Make-ChatRooms-StarterKit */ = {
 			isa = PBXGroup;
 			children = (
+				1C04672B221B318600EFCC5F /* Controllers */,
+				1C04672A221B318000EFCC5F /* Cells */,
+				1C046729221B317B00EFCC5F /* Models */,
+				1C046728221B317100EFCC5F /* ChatRoom */,
+				1C046727221B316A00EFCC5F /* Helpers */,
+				1C046726221B315100EFCC5F /* Views */,
 				1C046706221B30EE00EFCC5F /* AppDelegate.swift */,
 				1C046708221B30EE00EFCC5F /* ViewController.swift */,
 				1C04670A221B30EE00EFCC5F /* Main.storyboard */,
@@ -94,6 +100,48 @@
 				1C04671D221B30EF00EFCC5F /* Info.plist */,
 			);
 			path = "Make-ChatRooms-StarterKitTests";
+			sourceTree = "<group>";
+		};
+		1C046726221B315100EFCC5F /* Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		1C046727221B316A00EFCC5F /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
+		1C046728221B317100EFCC5F /* ChatRoom */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ChatRoom;
+			sourceTree = "<group>";
+		};
+		1C046729221B317B00EFCC5F /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		1C04672A221B318000EFCC5F /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		1C04672B221B318600EFCC5F /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Controllers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
