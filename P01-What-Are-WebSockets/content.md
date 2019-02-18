@@ -14,7 +14,7 @@ A web socket can be thought of as a pipeline that is used to transmit data betwe
 #####
 With a web socket connection both ends of the connection aka the client and the server can communication with each other. Often named as bi-directional data flow! By allowing data to flow both ways the server and client can equally listen and react to incoming events.
 #### 
-![Multiple Connected Clients](./assets/ConnectedClients.jpg)
+![Multiple Connected Clients](./assets/ConnectedClients.png)
 _Forgive the unartistic image!_
 ####
 The server can be thought of as a traffic cop. Their job is to be able to coordinate cars to specific routes and direct them to where they need to be. The server acts in the same way, in charge of coordinating events that come from the multiple clients we may have connected at a time.
