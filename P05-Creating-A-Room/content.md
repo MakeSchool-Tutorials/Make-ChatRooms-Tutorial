@@ -250,3 +250,6 @@ Take a moment to add an event emitter inside the joinRoom method we made
 When we run our code now and trigger this function calling, you'll see a list of clients currently connected to that room including yourself!
 
 Congratulations, you are able to now join a room and or create one!
+
+In the next section of the tutorial, we are starting to hold more information pertaining to our user and room objects! No spoilers but lets start **modeling** our domain!
+
