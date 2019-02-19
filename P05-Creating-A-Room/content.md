@@ -192,4 +192,61 @@ class CreateUserViewController : UIViewController {
     }
 }
 ```
+ 
+ Now if we run the application we should be able to transition to the RoomsTableViewController!
 
+ Take this chance to play around with the alert view that we created and see if all is working!
+
+ Our product should now look like this.
+
+ #### Insert GIF on how the product should look like now
+
+ Now that we have the ability to add a room to our table view lets add some functionality to this feature! When the user creates the view!
+
+When the user taps the creates a room we want to emit an event to our server to join/create the room!
+
+Inside the alert controller we presented lets add a calling to our chat room method join room!
+
+Wait ... we don't have a join room method, lets create one!
+
+#### Insert a solution box here
+```
+    class ChatRoom {
+        ...
+        func joinRoom(roomName : String) {
+            // Emit an event to the server with the given roomName
+
+        }
+    }
+```
+When asked to join a room our node server is listening for an event title _join room_ as you can see in the code snippet below.
+
+```
+     // Triggered when a user wants to create/join a room
+    socket.on("joinRoom", function (roomName) {
+        console.log(socket.id + " has joined the room " + roomName)
+        socket.join(roomName)
+
+        ...
+    });
+```
+
+When triggered it uses the given room name and either creates it or joins it depending if it previously existed and connects the socket, POWER ON!
+
+Since our server is listening for this event lets do our duty and trigger it from our client!
+
+Take a moment to add an event emitter inside the joinRoom method we made
+
+#### Insert solution box here
+```
+    class ChatRoom {
+        func joinRoom(roomName: String) {
+            ...
+            socket.emit("joinRoom", roomName)
+        }
+    }
+```
+
+When we run our code now and trigger this function calling, you'll see a list of clients currently connected to that room including yourself!
+
+Congratulations, you are able to now join a room and or create one!
