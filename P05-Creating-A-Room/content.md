@@ -175,14 +175,13 @@ Take some time to create an alert view that asks for the room name! Make sure to
 
 Great now lets run our code ... but wait we never implemented a way to transition between our create user view to our rooms table view.
 
-Take a minute to implement a method inside the CreateUserViewController to push the RoomsTableViewController on top of the navigation stack!
-
+Lets add the functioality inside our delegate method transitionToRoom to push the RoomsTableViewController on top of the stack
 #### Insert solution box here
 ```
 class CreateUserViewController : UIViewController {
     ...
 
-    func transitionToRoomsTableView() {
+    func transitionToRoom() {
         // First we need to instaniate our destination
         let roomsTableView = RoomsTableView() 
 
