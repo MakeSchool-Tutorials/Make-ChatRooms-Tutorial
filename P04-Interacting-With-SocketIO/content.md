@@ -117,3 +117,64 @@ socket.on(clientEvent: .connect) { (data, ack)
 ```
 
 Since we add our first event listener let's call the event listeners function inside this class's initalizer! This is allowing these event listeners to be triggered when the chat room is first instantiated!
+
+
+Now that we have made our event listener lets finally make a connection to the server! We are going to need to make a view contoller to house the logic between user interactions and our chat room logic
+
+Should be located inside the View Controllers folder~
+```
+class CreateUserViewController : UIViewController {
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+    }
+}
+```
+
+Since our view should only contain logic pertaining to the view let's instatiate the chat room inside our CreateUserViewController that we made
+
+```
+class CreateUserViewController : UIViewController {
+    let chatRoom = ChatRoom() // Upon initialization the socket will make a connection
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+    }
+}
+```
+
+Great! Lets now run the program ... oh shoot there is a black screen!
+
+#### Insert the screen black simulator
+The reason being is that we haven't set our root view controller, take a minute to set our root view controller to be the CreateUserViewController
+
+#### Insert the solution box 
+```
+func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+        // Override point for customization after application launch.
+        
+        window = UIWindow(frame: UIScreen.main.bounds)
+        window?.makeKeyAndVisible()
+        
+        
+        let createUserVC = CreateUserViewController()
+        
+        window?.rootViewController = UINavigationController(rootViewController: createUserVC)
+        return true
+    }
+
+```
+
+Thats great but our viewController doesn't have a corresponding view ... we now have to instantiate our view and add it as a subview
+
+#### Insert solution box here
+```
+override func viewDidLoad() {
+        super.viewDidLoad()
+        let createUserView = CreateUserView()
+        createUserView.frame = self.view.bounds
+        self.view.addSubview(createUserView)
+    }
+```
+
+#### How do we introduce the concepts on singletons
