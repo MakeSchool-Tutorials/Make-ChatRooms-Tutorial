@@ -10,10 +10,10 @@ This is what the end product of this page should look like!
 
 First lets create our table view that is going to be responsible for displaying all the rooms that the current user is actively in!
 
-Lets create a file in our controllers folder called **RoomsTableView**
+Lets create a file in our controllers folder called **RoomsTableViewController**
 
 ```
-class RoomsTableView: UITableView {
+class RoomsTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
     }
@@ -29,7 +29,7 @@ Now that we have created the Rooms Table View file lets add the intended methods
 Take a minute to add the delegate and data source methods numberOfRowsInSection, cellForRowAt, didSelectRowAt
 #### Insert Solution Box here
 ```
-class RoomsTableView: UITableView {
+class RoomsTableViewController: UITableViewController {
     ... 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     }
@@ -43,3 +43,23 @@ class RoomsTableView: UITableView {
 }
 
 ```
+
+Now that we have these stub methods inserted lets add some functionality to this table view!
+
+We know that there is going to be cells displaying the name of the room therefore lets create a UITableViewCell that is going to be used throughout our UITableViewController
+
+Take a minute to create your table view cell and to register it in the view did load method of our table view controller
+#### Add solution box here 
+```
+class ConfigureCell: UITableViewCell {}
+
+class RoomsTableViewController : UITableViewController {
+    ... 
+    override func viewDidLoad() {
+        // Identifier of the cell is your choice ... remember to stay consistent with the naming of your cell
+        
+        tableView.register(ConfigureCell.self, forCellReuseIdentifier: "RoomTableViewCell")
+    }
+}
+```
+
