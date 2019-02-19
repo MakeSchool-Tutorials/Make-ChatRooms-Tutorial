@@ -144,14 +144,17 @@ Take some time to create an alert view that asks for the room name! Make sure to
      @objc func createRoom(sender: UIBarButtonItem) {
         print("User wants to create a room")
         
+        // The initial message and creating of text field in charge of grabbing user input
+
         let createRoomAlert = UIAlertController(title: "Enter Room Name", message: "Please enter the name of the room you'd like to join or create!", preferredStyle: .alert)
         createRoomAlert.addTextField { (roomNameTextField) in
             roomNameTextField.placeholder = "Room Name?"
         }
-        
+
         let saveAction = UIAlertAction(title: "Create/Join Room", style: .default) { (action) in
             guard let roomName = createRoomAlert.textFields?[0].text else {return}
             print("Name of the room user wants to create/join \(roomName)")
+            self.rooms.append(roomName)
             self.tableView.reloadData()
         }
         
@@ -163,4 +166,10 @@ Take some time to create an alert view that asks for the room name! Make sure to
         self.present(createRoomAlert, animated: true, completion: nil)
     }
 ```
+
+1. The save action that we have created is in charge of extracting the input that the current user typed in and appending it to our rooms array! After doing so we reload the table view so that the number of rows we have can reflect the new length of the array!
+
+2. The cancel action that we have made is if the user wants to exit out of the alert view we denote this by changing the style of the action to be cancel, this will add a cancel button to our alert view once we add it as an action
+
+3. We then add our save and cancel actions to the alert view! And then proceed to the present the alert!
 
