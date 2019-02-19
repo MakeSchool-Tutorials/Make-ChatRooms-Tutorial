@@ -74,3 +74,27 @@ Inside lets create a function that is in charge of initialzing the view when cal
 
 Now that we have the corresponding swift file we can connect our UIElements to code!
 
+```
+
+class CreateUserView: UIView {
+    ... // You'll see these three dots throughout the tutorial meaning that we are adding code!
+
+    @IBOutlet weak var userInfoView:UIView!
+    @IBOutlet weak var makeSchoolLogoImageView: UIImageView!
+    @IBOutlet weak var userNameTextField: UITextField!
+   
+    @IBAction func joinChatRoomButton(_ sender: Any) {
+        guard let username = userNameTextField.text else {return}
+     
+    }
+}
+
+```
+
+Wait! There is still a problem here, when we press the join chat room button nothing happens ... so I guess the appropriate question is what should happen!
+
+
+When the user joins the chat room server we want to notify our server that we have a new user!
+#### GIF of when user enters the chat what is outputted to the terminal!
+
+Now that we have taken care of the component that the user is directly interacting with lets add some functionality! 
