@@ -57,9 +57,34 @@ class RoomsTableViewController : UITableViewController {
     ... 
     override func viewDidLoad() {
         // Identifier of the cell is your choice ... remember to stay consistent with the naming of your cell
-        
+
         tableView.register(ConfigureCell.self, forCellReuseIdentifier: "RoomTableViewCell")
     }
 }
 ```
 
+Now that we have registered our cell lets use it to display some test content until we have actual rooms to show!
+
+If we navigate to our cellForRowAt method this is where we will be configuring our cell to display content! 
+
+Take a minute to dequeue (return) a cell with the same identifier as the cell that we made earlier! 
+
+Insert Solution box here
+
+```
+class RoomsTableViewController: UITableViewController {
+    ... 
+     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+
+        let cell = tableView.dequeueReusableCell(withIdentifier: "RoomTableViewCell", for: indexPath)
+
+        // Display test content until we have actual rooms to display!
+        cell.textLabel?.text = "Test Room"
+        return cell
+    }
+}
+```
+
+Now that we have our cell configured for each row we have not defined how many cells the table view should instantiate! The logic responsible for that is contained inside the numberOfRowsInSection method!
+
+ 
