@@ -35,3 +35,42 @@ Create three components on the view:
 If done correctly, it should resemble the GIF up above!
 
 Now that we have created our visual components let us connect that to our code so we can manipulate these elements! Proceed to make the corresponding swift file for our xib view if you haven't done so already!
+
+Once you have created your file for your view the starting contents should look like this *Arrow down
+
+```
+    class CreateUserView: UIView {
+        override init(frame: CGRect) {
+            super.init(frame: frame)
+        }
+
+        required init?(coder aDecoder: NSCoder) {
+            super.init(coder: aDecoder)
+        }
+    }
+```
+
+Inside lets create a function that is in charge of initialzing the view when called from the parent view controller! This allows us to be able to configure this view no matter where its called. Add this function to our View
+
+```
+      private func commonInit() {
+        
+        // When this function is executed it will load the corresponding xib file
+        Bundle.main.loadNibNamed("CreateUserView", owner: self, options: nil)
+
+        // Add this view to the main view with added configurations
+        addSubview(userInfoView)
+        userInfoView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+    }
+
+    // Now that we have made this helper function it still has to be executed lets call it in the intializer
+
+     override init(frame: CGRect) {
+            super.init(frame: frame)
+            commonInit()
+        }
+
+```
+
+Now that we have the corresponding swift file we can connect our UIElements to code!
+
