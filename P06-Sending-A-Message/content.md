@@ -2,6 +2,15 @@
 
 Now that we are able to join a room on our server lets start working on the ability to message other users in that room! 
 
-#### Should be a message object that they emit because that's what the server is listening for ... for simplicity sake of the tutorial the first step should be just emitting the message but will have to change code on the server to stop listening for the object and listen for just the message
+Disclaimer: The node server that has been running is listening for a chat message event, the problem is that it is looking for a message object after we create our message model! For this first step we want to be able to just emit a message to the server.
 
+This listener has been created on the server side to listen for just the message, later on in the tutorial we will refactor to send the whole message object!
+
+```
+    # Code snippet taken from the node server that we've created!
+
+    socket.on("message", function(messageContent) {
+        console.log("Incoming message contents : ", messageContent)
+    });
+```
 
