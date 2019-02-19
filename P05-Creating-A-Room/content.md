@@ -98,6 +98,69 @@ Now that we have our cell configured for each row we have not defined how many c
          override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
         return rooms.count
-    }
+        }
     }
  ```
+
+ But we haven't populated our rooms array with anything therefore there are going to be 0 rows instantiated!
+
+ We are now entering the process of creating and joining a room!
+
+ We are first going to need a way to add these rooms! In the GIF above the implemented way is using an alert view to take user input and create the room!
+
+ This is customizable up to your choice whether you would like to use a modal view or another choice!
+
+ First lets create a bar button item that is going to trigger our alert view!
+
+ Take a minute to implement a bar button programatically!
+
+#### Insert solution box here
+```
+    //     MARK TODO: Can these uielements be extracted to a helper file?
+
+    lazy var createRoomButton: UIBarButtonItem = {
+        let createJoinRoomButton = UIBarButtonItem(title: "Create Room", style: .plain, target: self, action: #selector(createRoom(sender:)))
+        return createJoinRoomButton
+    }()
+    
+```
+
+Why use the keyword **lazy**?
+
+Lazy is a form of initalization where the object isn't directly created until explicitly told to do so!
+
+We will be adding this button when the view first loads therefore it will be explicitly called in the viewDidLoad method.
+
+Inside the code snippet above the action parameter is set to a method called createRoom wrapped in a selector object! #### Talk more about the selector object
+
+We are going to tie a functionality to this button and that is to display an alert view! 
+
+Lets create a method called createRoom(), dont forget to prefix the method definition with @objc!
+
+Take some time to create an alert view that asks for the room name! Make sure to add save and cancel actions to allow our user to proceed in the application!
+
+#### Insert solution box here
+```
+     @objc func createRoom(sender: UIBarButtonItem) {
+        print("User wants to create a room")
+        
+        let createRoomAlert = UIAlertController(title: "Enter Room Name", message: "Please enter the name of the room you'd like to join or create!", preferredStyle: .alert)
+        createRoomAlert.addTextField { (roomNameTextField) in
+            roomNameTextField.placeholder = "Room Name?"
+        }
+        
+        let saveAction = UIAlertAction(title: "Create/Join Room", style: .default) { (action) in
+            guard let roomName = createRoomAlert.textFields?[0].text else {return}
+            print("Name of the room user wants to create/join \(roomName)")
+            self.tableView.reloadData()
+        }
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { (action) in
+            print("User has canceled the action to create/join a room")
+        }
+        createRoomAlert.addAction(saveAction)
+        createRoomAlert.addAction(cancelAction)
+        self.present(createRoomAlert, animated: true, completion: nil)
+    }
+```
+
