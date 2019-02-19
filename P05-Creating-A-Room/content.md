@@ -87,4 +87,17 @@ class RoomsTableViewController: UITableViewController {
 
 Now that we have our cell configured for each row we have not defined how many cells the table view should instantiate! The logic responsible for that is contained inside the numberOfRowsInSection method!
 
- 
+ The number of cells that we want to appear directly corresponds to the number of rooms that the user is actively in! Lets create an array at the top of the file that is used to keep track of the rooms that the user is actively in!
+
+ ```
+    class RoomsTableViewController : UITableViewController {
+
+        // Keep track of the room names that the user is in
+        var rooms: [String] = [String]()
+        ...
+         override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        
+        return rooms.count
+    }
+    }
+ ```
