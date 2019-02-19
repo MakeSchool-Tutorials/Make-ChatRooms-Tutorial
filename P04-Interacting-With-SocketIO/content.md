@@ -257,5 +257,3 @@ Great! Now to make sure all this code works, try entering a username and see the
 
 Awesome you have now mirrored interactions between server and client, learned about event emitters and listeners, and one step closer to creating your real time messaging application!
 
-
-#### How do we introduce the concepts on singletons
