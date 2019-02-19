@@ -164,6 +164,9 @@ func application(_ application: UIApplication, didFinishLaunchingWithOptions lau
     }
 
 ```
+#### Insert picutre of user connecting on terminal
+
+Even though or view is still dark you should see that a user connected outputted in your terminal
 
 Thats great but our viewController doesn't have a corresponding view ... we now have to instantiate our view and add it as a subview
 
@@ -176,5 +179,33 @@ override func viewDidLoad() {
         self.view.addSubview(createUserView)
     }
 ```
+
+Great now we have a user connected on of the last steps that we have to complete is assiging a username to the socket connection! Therefore to do so we need the username that the user types in, lets head over to our CreateUserView!
+
+Lets grab a hold of the username that the user types in, once we have that we can pass that to our send username method in the ChatRoom file.
+
+Wait! There is no sendUsername method! Take a minute to implement a method stub called sendUsername.
+
+#### Insert solution box here
+```
+class ChatRoom {
+    ...
+    func sendUsername(username: String) {
+       // In charge of emitting event to server with the passed username 
+    }
+}
+```
+
+This method allows us to send the server an event containing the username as we will see in a moment here!
+
+If we go back to our CreateUserView the error should be gone concerning no method named sendUsername, but to fix the error is one thing but to make it work is another!
+
+Lets add some functionality to this sendUsername method in the ChatRoom file!
+
+#### Event Emitters
+
+
+
+
 
 #### How do we introduce the concepts on singletons
