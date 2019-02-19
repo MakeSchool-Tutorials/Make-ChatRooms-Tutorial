@@ -20,3 +20,4 @@ By the end of this tutorial, you should be able to ...
 
 ## Using Git/Github
 As you go though this tutorial you will be making substantial progress towards creating chatrooms and messaging others! It would be a shame if that progress were to be lost. To avoid this, be sure to make regular commits to your github repo containing the project. By implementing version control for your application not only are you helping yourself in detecting bugs during states of your application but also strengthening your engineering practices!
+
