@@ -397,6 +397,45 @@ To test this functionality if we add two simulators side by side and enter the c
 
 We've implemented functionality concerning if two users were to enter the chat with the same username, but what if the user chooses a valid username?
 
+The same question we asked ourself of who is the sender and the receiver in the case of a username collision is the same question to be asked when a valid username is triggered!
+
+#### Take a moment to execute the same functionality but for our room transition protocol
+
+#### Insert solution box here
+```
+    class ChatRoom {
+        ... 
+        weak var roomTransitioDelegate: RoomTransition?
+
+        func emittedEvents() {
+            ...
+            socket.on("validUsername") { (data, ack) in
+            
+            // Upon a successful username trigger a transtion to the list of active rooms user is currently in
+            print("Username has chosen a valid username")
+            let username = data[0]
+            let userDefaults = UserDefaults()
+            userDefaults.set("socketUsername", forKey: String(describing: username)) // Safely cast username as string
+
+            // Notify the sender to transition to the room table view!
+            self.roomTransitionDelegate?.transitionToRoom()
+        }
+        }
+    }
+
+    class CreateUserViewController : UIViewController: UsernameDelegate, RoomTransition {
+        ...
+        func roomTransition() {
+            print("User can successfully transition to the next view")
+        }
+
+        override func viewDidLoad() {
+            ... 
+            ChatRoom.shared.roomTransitionDelegate = self
+        }
+    }
+```
+
 This function will be triggered if our event listener for a username collision is triggered! As we can see the flow of communication starts from what the server responds back with initially!
 
 
