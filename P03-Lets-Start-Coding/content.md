@@ -98,3 +98,5 @@ When the user joins the chat room server we want to notify our server that we ha
 #### GIF of when user enters the chat what is outputted to the terminal!
 
 Now that we have taken care of the component that the user is directly interacting with lets add some functionality! 
+
+On the next page of this tutorial we are going to be interacting directly with the Socket IO wrapper that can be found [here](https://github.com/socketio/socket.io-client-swift)
