@@ -23,3 +23,23 @@ class RoomsTableView: UITableView {
     }
 }
 ```
+
+Now that we have created the Rooms Table View file lets add the intended methods that will allow us to make operations on the Table View!
+
+Take a minute to add the delegate and data source methods numberOfRowsInSection, cellForRowAt, didSelectRowAt
+#### Insert Solution Box here
+```
+class RoomsTableView: UITableView {
+    ... 
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    }
+    
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    }
+    
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        
+    }
+}
+
+```
