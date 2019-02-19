@@ -182,14 +182,44 @@ override func viewDidLoad() {
 
 Great now we have a user connected on of the last steps that we have to complete is assiging a username to the socket connection! Therefore to do so we need the username that the user types in, lets head over to our CreateUserView!
 
+Before we move on ... lets introduce the concepts on singletons!
+
+Disclaimer: Singletons can often represent poorly architected code due to it allowing global access, therefore a stretch challenge we will implement a safer and cleaner way to avoid singletons! 
+
+For now we'll honor the red light, green light, refactor methodolgy
+
+
+
+Similar to how we only want one instance of a socket connection we also want one instance of our chatroom! Possible errors that can rise if multiple instances of chat rooms are made when we pass values in and throughout the chatroom we may not be altering the intended instance and can cause unforseen errors!
+
+Inside of our Chat Room class insert the following line of code
+
+```
+class ChatRoom {
+    static var shared = ChatRoom()
+    ...
+}
+```
+
+The static keyword denotes that the value can be accessed without the instantiation of the class! Now the value we set to share is instantiation of the ChatRoom itself ... wait I'm confused now!
+
+If we make a single instance of the ChatRoom all values altered are in that single instance which is good because we never have to worry about the management of multiple instances! Therefore for any logic relating to the chat room if we access it through the shared variable we can maintain these values!
+
 Lets grab a hold of the username that the user types in, once we have that we can pass that to our send username method in the ChatRoom file.
+
+```
+@IBAction func joinChatRoomButton(_ sender: Any) {
+        guard let username = userNameTextField.text else {return}
+        ChatRoom.shared.sendNickname(username: username)
+    }
+```
 
 Wait! There is no sendUsername method! Take a minute to implement a method stub called sendUsername.
 
 #### Insert solution box here
 ```
 class ChatRoom {
-    ...
+    ... 
     func sendUsername(username: String) {
        // In charge of emitting event to server with the passed username 
     }
@@ -198,14 +228,34 @@ class ChatRoom {
 
 This method allows us to send the server an event containing the username as we will see in a moment here!
 
-If we go back to our CreateUserView the error should be gone concerning no method named sendUsername, but to fix the error is one thing but to make it work is another!
+If we go back to our CreateUserView the error should be gone concerning no method named sendUsername if we passed in the username text, but to fix the error is one thing but to make it work is another!
 
 Lets add some functionality to this sendUsername method in the ChatRoom file!
 
 #### Event Emitters
 
+We have seen the ability to be able to listen to event from our server, but what is we wanted to trigger an event on our server. Event emitters allow us to ping an event on our server, our first event emitter is going to allow us to send a username to our server and respond back with a functionality!
 
+If we look back at the code snippet at the start of the file we can see the event listener on the server listening for a username! Our goal is to trigger this event with the corresponding event name. Our server  is listening for certain events therefore it's our job to make sure that we emit the correct events that includes naming the event the same on both the front-end and the back-end!
 
+Take a minute to see if you can emit an event from ours socket
+
+##### Insert solution box here
+```
+class ChatRoom {
+    ...
+    func sendUsername(username: String) {
+        socket.emit("socketUsername", username)
+    }
+}
+
+```
+
+Great! Now to make sure all this code works, try entering a username and see the corresponding output on your terminal!
+
+#### Insert picture of output of when the user sends a username
+
+Awesome you have now mirrored interactions between server and client, learned about event emitters and listeners, and one step closer to creating your real time messaging application!
 
 
 #### How do we introduce the concepts on singletons
