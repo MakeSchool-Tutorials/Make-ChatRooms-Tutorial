@@ -338,9 +338,67 @@ Take a minute to add a protocol with the skeletal function called transitionToRo
 protocol RoomTransition: class {
     func transitionToRoom() {} // Will populate with logic when receiver conforms to protocol
 }
+
+protocol UsernameDelegate: class {
+    func usernameCollision
+}
 ```
 
 The next step in this process is to create a delegate that our sender is going to trigger! Lets map out what our senders and receivers look like
+
+The sender is going to be the event listener username collision because only at that point in time do we want to display the alert
+
+The receiver is going to be the CreateUserViewController because once it receives the action it is in charge of displaying the alert
+
+Take some time to implement the delegate on the sender side and for the receiver to conform to our protocol
+
+#### Insert solution box
+```
+    class ChatRoom {
+        ... 
+        weak var usernameCollisionDelegate : UsernameDelegate?
+
+        func emittedEvents() {
+            ...
+            // Trigger our username collision function
+            usernameCollisionDelegate?.usernameCollsion()
+        }
+    }
+```
+
+Now that we have implemented our sender lets make our receiver conform to our Room Transition protocol so that when the delegate function is triggered we can respond accordingly
+
+Take a moment to make our receiver conform to our Room Transition protocol
+
+#### Insert solution box here
+```
+    class CreateUserViewController : UIViewController, UsernameDelegate {
+        ... 
+        func usernameCollision() {
+        // Creating an alert to display to user if this method is triggered
+
+        let usernameAlert = UIAlertController(title: "Different Username Please", message: "The username you have chosen is already taken by somebody currently connected.", preferredStyle: .alert)
+        let cancelAction = UIAlertAction(title: "Try Again", style: .cancel, handler: nil)
+        usernameAlert.addAction(cancelAction)
+        self.present(usernameAlert, animated: true, completion: nil)
+        }
+
+        override func viewDidLoad() {
+
+            // Notify the sender that the results should be linked to self(ChatRoomViewController)
+            ChatRoom.shared.usernameCollisionDelegate = self
+        }
+    }
+```
+
+To test this functionality if we add two simulators side by side and enter the chat with the same username the second simulator should appear with an alert view asking you to re-type your username!
+
+#### Insert GIF of username collision alert happening
+
+We've implemented functionality concerning if two users were to enter the chat with the same username, but what if the user chooses a valid username?
+
+This function will be triggered if our event listener for a username collision is triggered! As we can see the flow of communication starts from what the server responds back with initially!
+
 
 #### Insert picture of output of when the user sends a username
 
