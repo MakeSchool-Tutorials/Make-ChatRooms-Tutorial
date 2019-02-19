@@ -257,3 +257,4 @@ Great! Now to make sure all this code works, try entering a username and see the
 
 Awesome you have now mirrored interactions between server and client, learned about event emitters and listeners, and one step closer to creating your real time messaging application!
 
+In this section of the tutorial we went over assigning a username to an individual socket connection! In the next portion we will be able to join and create a room! One step closer to being able to communicate with other users!
