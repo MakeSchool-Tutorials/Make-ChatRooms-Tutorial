@@ -98,7 +98,7 @@ As we mentioned earlier this communication can be bi-directional meaning that th
 To listen out for events that our server has emitted we can use the on method which given an event is triggered when that event comes back! For example
 
 ```
-socket.on("specificEvent") { (data, ack)
+socket.on("specificEvent") { (data, ack) in 
     print("Based of this event I want to trigger some functionality")
 }
 ```
@@ -111,7 +111,7 @@ In the stubbed out function event listeners lets add the event listener for when
 
 #### Have to add solution box for this code snippet
 ```
-socket.on(clientEvent: .connect) { (data, ack)
+socket.on(clientEvent: .connect) { (data, ack) in
     print("User has connected")
 } 
 ```
@@ -298,7 +298,7 @@ Lets add two event listeners to our Chat Room file, one being for the usernameCo
 
 #### Insert solution box here
 ```
-    func emittedEvents() {
+    func eventListeners() {
         ... 
         socket.on("usernameCollision") { (data, ack) in
             print("There has been a username collision, please try a new username")
@@ -358,10 +358,12 @@ Take some time to implement the delegate on the sender side and for the receiver
         ... 
         weak var usernameCollisionDelegate : UsernameDelegate?
 
-        func emittedEvents() {
+        func eventListeners() {
             ...
+            socket.on("usernameCollision") { (data, ack) in       
             // Trigger our username collision function
             usernameCollisionDelegate?.usernameCollsion()
+            }
         }
     }
 ```
@@ -407,7 +409,7 @@ The same question we asked ourself of who is the sender and the receiver in the 
         ... 
         weak var roomTransitioDelegate: RoomTransition?
 
-        func emittedEvents() {
+        func eventListeners() {
             ...
             socket.on("validUsername") { (data, ack) in
             
