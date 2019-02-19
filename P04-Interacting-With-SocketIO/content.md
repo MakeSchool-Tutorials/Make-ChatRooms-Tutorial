@@ -253,6 +253,73 @@ class ChatRoom {
 
 Great! Now to make sure all this code works, try entering a username and see the corresponding output on your terminal!
 
+The last step that we have to complete is to check if the username that the user has sent is valid. Valid in this context means that no other socket connection has the same username!
+
+On the server side we can see that our event listeners are outputting event emitters 
+
+On the server side the way we are keeping track of this is that we are storing the socket username with the corresponding socket id inside local storage. The goal of this is to be able to check if that username already exists!
+
+```
+    # Code snippet taking from the node backend
+
+    socket.on("socketUsername", function (username) {
+    
+        // Checking if username is already present
+        if (localStorage.getItem(username)) {
+            console.log("Someone currently connected to the server shares the same username!")
+            socket.emit("usernameCollision", username)
+
+        } else { // If we don't see the username
+            localStorage.setItem(username, socket.id) // saving the item in local storage
+
+            // Emit that the username chosen because it is a successful username
+            socket.emit("validUsername", username)
+        }
+    });
+
+```
+1. The first step taken is to see if the username already exists within local storage
+    * If the username already exists within local storage we know that a socket connection with that username already exists
+
+    * If there is a username collision we create an event emitter that creates an event under the name usernameCollision
+
+ 2. If we can't find the username inside local storage then create the key-value pair with the key being the username and the value being the corresponding socket id
+    * If the username is valid we then create an event emitter to create an event called valid username
+
+Now that we have an understanding what the backend is doing behind the scenes when you send a username lets implement custom logic on the client side to respond to these events accordingly
+
+From the client perspective we are going to be listening out for these two events! Before we start to implement lets go over the desired output of each situation!
+
+When listening for the username collision event handler if triggered we want to display an alert to the user saying that someone connected already has that username
+
+On the other hand when listening for the valid username event handler we want to transition to the next view!
+
+Lets add two event listeners to our Chat Room file, one being for the usernameCollision and the other being for a valid username
+
+#### Insert solution box here
+```
+    func emittedEvents() {
+        ... 
+        socket.on("usernameCollision") { (data, ack) in
+            print("There has been a username collision, please try a new username")
+            
+        }
+        socket.on("validUsername") { (data, ack) in   
+            // Upon a successful username trigger a transtion to the list of active rooms user is currently in
+            print("Username has chosen a valid username")
+
+            // Data comes back as type [Any] where the first value is the contents of the data
+            let username = data[0]
+            let userDefaults = UserDefaults()
+            userDefaults.set("socketUsername", forKey: String(describing: username)) // Safely cast username as string
+        }
+    }
+```
+
+1. We are printing an error notifying the user if there is a username collision if the usernameCollision event handler is triggered 
+
+2. If the validUsername event handler is triggered we then weant to store the username in User Defaults so that we are able to access the current user's username in other parts of the application
+
 #### Insert picture of output of when the user sends a username
 
 Awesome you have now mirrored interactions between server and client, learned about event emitters and listeners, and one step closer to creating your real time messaging application!
