@@ -8,4 +8,13 @@
 
 import Foundation
 
-class ChatRoom{}
+class ChatRoom{
+    
+    
+    func eventListeners() {
+        // Mark: TODO Create event listener for when user connects
+        
+    }
+    
+    // Mark: Todo and event emitters to send the nickname over the server
+}
