@@ -320,6 +320,28 @@ Lets add two event listeners to our Chat Room file, one being for the usernameCo
 
 2. If the validUsername event handler is triggered we then weant to store the username in User Defaults so that we are able to access the current user's username in other parts of the application
 
+As we mentioned earlier if there is a username collision we want to display an alert to the user that they have to re-type their password!
+
+#### Insert link to more info on delegates if need be
+####Introducing delegates!
+
+At this point in time this is assuming you have a basic understanding on how delegates are used to pass information between points but if not feel free to read more on [delegates]()
+
+The delegate we are going to create is going to be in charge of notifiyig our Chat Room View Controller to display an alert!
+
+To do this we need to create a protocol, navigate over to the protocols file located inside the helpers folder
+
+Take a minute to add a protocol with the skeletal function called transitionToRoom
+
+#### Insert solution box here
+```
+protocol RoomTransition: class {
+    func transitionToRoom() {} // Will populate with logic when receiver conforms to protocol
+}
+```
+
+The next step in this process is to create a delegate that our sender is going to trigger! Lets map out what our senders and receivers look like
+
 #### Insert picture of output of when the user sends a username
 
 Awesome you have now mirrored interactions between server and client, learned about event emitters and listeners, and one step closer to creating your real time messaging application!
