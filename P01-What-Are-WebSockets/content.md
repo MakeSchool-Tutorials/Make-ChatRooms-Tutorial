@@ -6,15 +6,15 @@ A web socket can be thought of as a pipeline that is used to transmit data betwe
 #####
 ![Bi-Directional Communication](./assets/WebSockets-Diagram.png)
 #####
-1. From the illustration above we can see the first step in establishing this communication is to first execute a handshake which is the initial connection that is made between server and client!
+1. From the illustration above we can see the first step in establishing this communication is to first execute a handshake which is the initial connection that is made between server and client.
 
-2. Once the connection is opened the data that is able to flow between server and client is Bi-Directional meaning that data can be recieved and emitted from both parties!
+2. Once the connection is opened the data that is able to flow between server and client is Bi-Directional meaning that data can be recieved and emitted from both parties.
 
 3. Unlike typical HTTP requests once the connection is made and the request is resolved the connection does not automatically close. Either end of the socket connection has to explicitly close the socket connection!
 #####
-With a web socket connection both ends of the connection aka the client and the server can communication with each other. Often named as bi-directional data flow! By allowing data to flow both ways the server and client can equally listen and react to incoming events.
+With a web socket connection both ends of the connection aka the client and the server can communicate with each other. Often named as bi-directional data flow! By allowing data to flow both ways the server and client can equally listen and react to incoming events.
 #### 
-![Multiple Connected Clients](./assets/ConnectedClients.png)
+![Multiple Connected Clients](./assets/ConnectedClients.jpeg)
 _Forgive the unartistic image!_
 ####
 The server can be thought of as a traffic cop. Their job is to be able to coordinate cars to specific routes and direct them to where they need to be. The server acts in the same way, in charge of coordinating events that come from the multiple clients we may have connected at a time.
