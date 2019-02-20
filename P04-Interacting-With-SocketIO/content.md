@@ -1,6 +1,6 @@
-Going back to the top-down approach to programming what we have done is already create the visual component that the user is interacting with !
+Going back to the top-down approach to programming what we have done is already create the visual component that the user is interacting with.
 
-The next step is to add the functionality of actually creating a user. To do this we need to emit or trigger an event on our server to do ... this event
+The next step is to add the functionality of actually creating a user. To do this we need to emit or trigger an event on our server to do this event.
 
 ```
    // Code snippet from this project's backend, can be found in server js
@@ -14,9 +14,9 @@ The next step is to add the functionality of actually creating a user. To do thi
 
 To trigger this event we first need to add the Socket IO wrapper written in Swift! This dependency allows us to interact with all the capabilities of Socket IO with methods written in Swift. How amazing is that?!
 
-First let's create a Podfile, a file that lists out the dependencies to are used in the project. If you have familiarity with how a node server operates the Podfile can be thought of a package.json file!
+First let's create a Podfile, a file that lists out the dependencies that are used in the project. If you have familiarity with how a node server operates the Podfile can be thought of a package.json file.
 
- Execute these sequence of commands in this starter kit directory in terminal
+ Execute these sequence of commands in this starter kit directory in terminal.
 
 ```
  pod init // Creates a new podfile
@@ -45,7 +45,7 @@ First lets import our newly added dependency
 import SocketIO
 ```
 
-The next step before we can connect to our server is that we have to tell Socket IO to connect to our server running on port 4000! That is the default port that the server is running, this can be changed to a port of your choice
+The next step before we can connect to our server is that we have to tell Socket IO to connect to our server running on port 4000! That is the default port that the server is running, this can be changed to a port of your choice.
 
 ```
 class ChatRoom {
@@ -53,18 +53,18 @@ class ChatRoom {
 
     static let manager = SocketManager(socketURL: URL(string: "http://localhost:\(port)/")!, config: [.log(true), .compress])
 
-    private var socket = manager.defaultSocket // Singleton instance  one socket connection per phone
+    private var socket = manager.defaultSocket // Singleton instance one socket connection per phone.
 }
 ```
 
-1. We are creating a socket manager in charge of connecting to the given url
+1. We are creating an instance our socket manager class that will connect to the given url.
 
-2. We are creating a singleton instance of the socket meaning that there can only be once instance of a socket connection per device! This makes sure that when we are performing operations on or with the socket that it will be the same instance that we have made!
+2. We are creating a singleton instance of the socket meaning that there can only be once instance of a socket connection per device! This makes sure that when we are performing operations on or with the socket that it will be the same instance that we have made.
 
 
-Now that we have created a socket instance that represents the individual connection the user has made to the server we have to explicitly tell the socket to connect
+Now that we have created a socket instance that represents the individual connection the user has made to the server, we have to explicitly tell the socket to connect.
 
-Let us add an initalizer to this class, upon initialization of this class we want the first thing to happen is for the socket connection to be made to the server
+Let us add an initalizer to this class, upon initialization of this class we want the first thing our socket to do is connect to our server.
 
 ```
 init() {
@@ -77,25 +77,14 @@ At this point in time we are able to connect but no way to actually execute this
 
 ### Have to refactor this portion right here and make it more semantic
 
-The problem is that the view has no parent view controller which is lays at the top of our logic hierarchy. In charge of controlling the interactions between our client, view, and chat room logic. By the end of this page you'll will have fully a controller that has defined the flow of logic from when our user first taps join chat room with their username and making the connection to our server
+There are **event emitters** and **event listeners** that are used to be able to listen for events and data and respond accordingly.
+
+For example in the code snippet taken from our server at the top of this page, our socket is listening for when a client emits or sends their username and it responds accordingly but logging a statement to the terminal.
+
+As we mentioned earlier this communication can be bi-directional meaning that the server can also emit events that the client is listening for and that is exactly what we are going to do now!
 
 
-Before we do so we should highlight the communication between server and client that is going to be taking place!
-
-There are **event emitters** and **event listeners** that are used to be able to listen for events and data and respond accordingly!
-
-For example in the code snippet taken from our server our socket is listening for when a the client emits or sends their username and it responds accordingly but logging a statement to the terminal.
-
-As we mentioned earlier this communication can be bi-directional meaning that the server can also emit and event that the client is listening for and that is exactly what we are going to do now!
-
-```
-
-```
-
-
-#### After the portion above has been written lets make the controller because all they need is the first event emitters and then they can execute the logic
-
-To listen out for events that our server has emitted we can use the on method which given an event is triggered when that event comes back! For example
+To listen out for events that our server has emitted we can use the on method which listens out for an event when triggered. For example ...
 
 ```
 socket.on("specificEvent") { (data, ack) in 
@@ -105,7 +94,7 @@ socket.on("specificEvent") { (data, ack) in
 
 1. Here we are able to listen out for a specifc event that is being emitted to the specific socket
 
-We can even listen out for generic events such as connecting, and disconnection ... events that every single socket connection has to perform! Therefore lets create a socket listener using the on method that listens for when a client connects
+We can even listen out for generic events such as connecting, and disconnection ... events that every single socket connection has to perform. Therefore lets create a socket listener using the on method that listens for when a client connects
 
 In the stubbed out function event listeners lets add the event listener for when a socket connects!
 
@@ -116,10 +105,10 @@ socket.on(clientEvent: .connect) { (data, ack) in
 } 
 ```
 
-Since we add our first event listener let's call the event listeners function inside this class's initalizer! This is allowing these event listeners to be triggered when the chat room is first instantiated!
+Since we added our first event listener lets call the function inside this class's initalizer! This is allowing these event listeners to be triggered when the chat room is first instantiated.
 
 
-Now that we have made our event listener lets finally make a connection to the server! We are going to need to make a view contoller to house the logic between user interactions and our chat room logic
+Now that we have made our event listener lets finally make a connection to the server. We are going to need to make a view contoller to house the logic between user interactions and our chat room logic
 
 Should be located inside the View Controllers folder~
 ```
@@ -131,8 +120,7 @@ class CreateUserViewController : UIViewController {
 }
 ```
 
-Since our view should only contain logic pertaining to the view let's instatiate the chat room inside our CreateUserViewController that we made
-
+Since our view should only contain logic pertaining to the view let's instatiate the chat room inside our CreateUserViewController 
 ```
 class CreateUserViewController : UIViewController {
     let chatRoom = ChatRoom() // Upon initialization the socket will make a connection
@@ -164,9 +152,9 @@ func application(_ application: UIApplication, didFinishLaunchingWithOptions lau
     }
 
 ```
-#### Insert picutre of user connecting on terminal
+#### Insert picture of user connecting on terminal
 
-Even though or view is still dark you should see that a user connected outputted in your terminal
+Even though or view is still dark you should see that a user connected output in your terminal
 
 Thats great but our viewController doesn't have a corresponding view ... we now have to instantiate our view and add it as a subview
 
@@ -180,17 +168,13 @@ override func viewDidLoad() {
     }
 ```
 
-Great now we have a user connected on of the last steps that we have to complete is assiging a username to the socket connection! Therefore to do so we need the username that the user types in, lets head over to our CreateUserView!
+Great now we have a user connected one of the last steps that we have to complete is assiging a username to the socket connection! Therefore to do so we need the username that the user types in, lets head over to our CreateUserView!
 
-Before we move on ... lets introduce the concepts on singletons!
+Before we move on ... lets introduce the concept of singletons!
 
-Disclaimer: Singletons can often represent poorly architected code due to it allowing global access, therefore a stretch challenge we will implement a safer and cleaner way to avoid singletons! 
+Disclaimer: Singletons can often represent poorly architected code due to it allowing global access, therefore a stretch challenge we will implement is a safer and cleaner way to avoid singletons.
 
-For now we'll honor the red light, green light, refactor methodolgy
-
-
-
-Similar to how we only want one instance of a socket connection we also want one instance of our chatroom! Possible errors that can rise if multiple instances of chat rooms are made when we pass values in and throughout the chatroom we may not be altering the intended instance and can cause unforseen errors!
+Similar to how we only want one instance of a socket connection we also want one instance of our chatroom! Possible errors that can occur if multiple instances of chat rooms are made when we pass values in and throughout the chatroom we may not be altering the intended instance and that can cause unforseen errors!
 
 Inside of our Chat Room class insert the following line of code
 
@@ -201,7 +185,7 @@ class ChatRoom {
 }
 ```
 
-The static keyword denotes that the value can be accessed without the instantiation of the class! Now the value we set to share is instantiation of the ChatRoom itself ... wait I'm confused now!
+The static keyword denotes that the value can be accessed without the instantiation of the class! Now the value we set to shared variable is instantiation of the ChatRoom itself ... wait I'm confused now!
 
 If we make a single instance of the ChatRoom all values altered are in that single instance which is good because we never have to worry about the management of multiple instances! Therefore for any logic relating to the chat room if we access it through the shared variable we can maintain these values!
 
@@ -210,7 +194,7 @@ Lets grab a hold of the username that the user types in, once we have that we ca
 ```
 @IBAction func joinChatRoomButton(_ sender: Any) {
         guard let username = userNameTextField.text else {return}
-        ChatRoom.shared.sendNickname(username: username)
+        ChatRoom.shared.sendUsername(username: username)
     }
 ```
 
@@ -221,7 +205,7 @@ Wait! There is no sendUsername method! Take a minute to implement a method stub 
 class ChatRoom {
     ... 
     func sendUsername(username: String) {
-       // In charge of emitting event to server with the passed username 
+       // In charge of emitting an event to server with the passed username 
     }
 }
 ```
@@ -234,9 +218,9 @@ Lets add some functionality to this sendUsername method in the ChatRoom file!
 
 #### Event Emitters
 
-We have seen the ability to be able to listen to event from our server, but what is we wanted to trigger an event on our server. Event emitters allow us to ping an event on our server, our first event emitter is going to allow us to send a username to our server and respond back with a functionality!
+We have seen the ability to be able to listen to events from our server, but what we wanted to do is trigger an event on our server. Event emitters allow us to ping an event on our server, our first event emitter is going to allow us to send a username to our server and respond back with a message.
 
-If we look back at the code snippet at the start of the file we can see the event listener on the server listening for a username! Our goal is to trigger this event with the corresponding event name. Our server  is listening for certain events therefore it's our job to make sure that we emit the correct events that includes naming the event the same on both the front-end and the back-end!
+If we look back at the code snippet at the start of the file we can see the event listener on the server listening for a username. Our goal is to trigger this event with the corresponding event name. Our server is listening for certain events therefore it's our job to make sure that we name them correctly on both the front-end and the backend.
 
 Take a minute to see if you can emit an event from ours socket
 
@@ -255,9 +239,9 @@ Great! Now to make sure all this code works, try entering a username and see the
 
 The last step that we have to complete is to check if the username that the user has sent is valid. Valid in this context means that no other socket connection has the same username!
 
-On the server side we can see that our event listeners are outputting event emitters 
+On the server side we can see that our event listeners are outputting event emitters.
 
-On the server side the way we are keeping track of this is that we are storing the socket username with the corresponding socket id inside local storage. The goal of this is to be able to check if that username already exists!
+On the server side the way we are keeping track of this is that we are storing the socket username with the corresponding socket id inside local storage. The goal of this is to be able to check if that username already exists.
 
 ```
     # Code snippet taking from the node backend
@@ -279,22 +263,22 @@ On the server side the way we are keeping track of this is that we are storing t
 
 ```
 1. The first step taken is to see if the username already exists within local storage
-    * If the username already exists within local storage we know that a socket connection with that username already exists
+    * If the username already exists within local storage we output that there has been username collision
 
-    * If there is a username collision we create an event emitter that creates an event under the name usernameCollision
+    * We then create an event emitter that creates an event under the name usernameCollision
 
  2. If we can't find the username inside local storage then create the key-value pair with the key being the username and the value being the corresponding socket id
-    * If the username is valid we then create an event emitter to create an event called valid username
+    * If the username is valid we then emit an event called valid username
 
-Now that we have an understanding what the backend is doing behind the scenes when you send a username lets implement custom logic on the client side to respond to these events accordingly
+Now that we have an understanding of what the backend is doing behind the scenes when you send a username lets implement custom logic on the client side to respond to these events accordingly.
 
-From the client perspective we are going to be listening out for these two events! Before we start to implement lets go over the desired output of each situation!
+From the client perspective we are going to be listening out for these two events. Before we start to implement lets go over the desired output of each situation.
 
 When listening for the username collision event handler if triggered we want to display an alert to the user saying that someone connected already has that username
 
-On the other hand when listening for the valid username event handler we want to transition to the next view!
+On the other hand when listening for the valid username event handler we want to transition to the next view.
 
-Lets add two event listeners to our Chat Room file, one being for the usernameCollision and the other being for a valid username
+Lets add two event listeners to our Chat Room file, one being for the usernameCollision and the other being for a valid username.
 
 #### Insert solution box here
 ```
@@ -316,24 +300,26 @@ Lets add two event listeners to our Chat Room file, one being for the usernameCo
     }
 ```
 
-1. We are printing an error notifying the user if there is a username collision if the usernameCollision event handler is triggered 
+1. We are printing an error notifying the user if there is a username collision 
 
-2. If the validUsername event handler is triggered we then weant to store the username in User Defaults so that we are able to access the current user's username in other parts of the application
+2. If the validUsername event handler is triggered we then want to store the username in User Defaults.
 
-As we mentioned earlier if there is a username collision we want to display an alert to the user that they have to re-type their password!
+As we mentioned earlier if there is a username collision we want to display an alert to the user that they have to re-type their username!
 
 #### Insert link to more info on delegates if need be
-####Introducing delegates!
+#### Introducing delegates!
 
-At this point in time this is assuming you have a basic understanding on how delegates are used to pass information between points but if not feel free to read more on [delegates]()
+At this point in time this is assuming you have a basic understanding on how delegates are used to pass information between senders and receivers but if not feel free to read more on [delegates]()
 
-The delegate we are going to create is going to be in charge of notifiyig our Chat Room View Controller to display an alert!
+The delegate we are going to create is going to be in charge of notifying our Chat Room View Controller to display an alert!
 
 To do this we need to create a protocol, navigate over to the protocols file located inside the helpers folder
 
 Take a minute to add a protocol with the skeletal function called transitionToRoom
 
 #### Insert solution box here
+
+#### Change sender and receiver to delegator and delegating object
 ```
 protocol RoomTransition: class {
     func transitionToRoom() {} // Will populate with logic when receiver conforms to protocol
@@ -344,13 +330,13 @@ protocol UsernameDelegate: class {
 }
 ```
 
-The next step in this process is to create a delegate that our sender is going to trigger! Lets map out what our senders and receivers look like
+The next step in this process is to create a delegate that our sender is going to trigger! Lets map out what our senders and receivers look like.
 
-The sender is going to be the event listener username collision because only at that point in time do we want to display the alert
+The sender is going to be the event listener usernameCollision because only at that point in time do we want to display the alert.
 
-The receiver is going to be the CreateUserViewController because once it receives the action it is in charge of displaying the alert
+The receiver is going to be the CreateUserViewController because once it receives the action it is in charge of displaying the alert.
 
-Take some time to implement the delegate on the sender side and for the receiver to conform to our protocol
+Take some time to implement the delegate on the sender side and for the receiver to conform to our protocol.
 
 #### Insert solution box
 ```
@@ -368,7 +354,7 @@ Take some time to implement the delegate on the sender side and for the receiver
     }
 ```
 
-Now that we have implemented our sender lets make our receiver conform to our Room Transition protocol so that when the delegate function is triggered we can respond accordingly
+Now that we have implemented our sender lets make our receiver conform to our Room Transition protocol so that when the delegate function is triggered we can respond accordingly.
 
 Take a moment to make our receiver conform to our Room Transition protocol
 
@@ -394,12 +380,11 @@ Take a moment to make our receiver conform to our Room Transition protocol
 ```
 
 To test this functionality if we add two simulators side by side and enter the chat with the same username the second simulator should appear with an alert view asking you to re-type your username!
+ * To run two simulators side by side run the project on the iPhone 8 and the iPhone 7
 
 #### Insert GIF of username collision alert happening
 
 We've implemented functionality concerning if two users were to enter the chat with the same username, but what if the user chooses a valid username?
-
-The same question we asked ourself of who is the sender and the receiver in the case of a username collision is the same question to be asked when a valid username is triggered!
 
 #### Take a moment to execute the same functionality but for our room transition protocol
 
@@ -438,11 +423,11 @@ The same question we asked ourself of who is the sender and the receiver in the 
     }
 ```
 
-This function will be triggered if our event listener for a username collision is triggered! As we can see the flow of communication starts from what the server responds back with initially!
+This function will be triggered if our event listener for a username collision is triggered! As we can see the flow of communication starts from what the server responds back with initially.
 
 
 #### Insert picture of output of when the user sends a username
 
 Awesome you have now mirrored interactions between server and client, learned about event emitters and listeners, and one step closer to creating your real time messaging application!
 
-In this section of the tutorial we went over assigning a username to an individual socket connection! In the next portion we will be able to join and create a room! One step closer to being able to communicate with other users!
+In this section of the tutorial we went over assigning a username to an individual socket connection. Learned to use delegates to either display an alert or transition to the next view. In the next portion we will be able to join and create a room! One step closer to being able to communicate with other users.

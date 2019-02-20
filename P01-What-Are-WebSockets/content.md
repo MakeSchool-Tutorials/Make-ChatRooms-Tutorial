@@ -19,8 +19,8 @@ _Forgive the unartistic image!_
 ####
 The server can be thought of as a traffic cop. Their job is to be able to coordinate cars to specific routes and direct them to where they need to be. The server acts in the same way, in charge of coordinating events that come from the multiple clients we may have connected at a time.
 #####
-If we look at the illustration above when a new client enters we open a connection between the client and the server. All these connections remain open for the purpose of being able to react and listen to oncoming events from other clients, in which the server is in charge of coordinating!
+If we look at the illustration above when a new client enters we open a connection between the client and the server. All these connections remain open for the purpose of being able to react and listen to incoming events from other clients, in which the server is in charge of coordinating.
 #####
-As you progress through the tutorial you will see the direct application of socket communication between client and server!
+As you progress through the tutorial you will see the direct application of socket communication between client and server.
 #####
-In the following tutorial we'll be using [Socket.io](https://socket.io/) one of the most reliable npm modules on the web that enables node servers to respond to event-driven WebSocket behaviors. Socket.io is a broad and powerful library that can manage multiple channels, rooms, and manage https and other forms of security. 
+In the following tutorial we'll be using [Socket.io](https://socket.io/) one of the most reliable npm modules on the web that enables Node servers to respond to event-driven WebSocket behaviors. Socket.io is a broad and powerful library that can manage multiple channels, rooms, and manage https and other forms of security. 

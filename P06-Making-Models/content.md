@@ -1,10 +1,10 @@
 ## Making Models
 
-We are entering a state of the application where more information needs to be stored corresponding to our objects! 
+We are entering a state of the application where more information needs to be stored corresponding to our objects.
 
-Right now there is no relation between our users and their rooms other than the sequence of our views! Lets take a moment to model a relationship between our users and rooms!
+Right now there is no relation between our users and their rooms other than the sequence of our views! Lets take a moment to model a relationship between our users and rooms.
 
-The relationship between users and rooms ... drumroll please ... a one to many relationship! Meaning that one user cann n participate in many chatrooms!
+The relationship between users and rooms ... drumroll please ... a one to many relationship. Meaning that one user cann n participate in many chatrooms.
 
 Knowing this can better help us when creating a model for our objects!
 
@@ -45,7 +45,7 @@ Take a moment to implement our room model
     class Room {
         var roomName : String
 
-        init(roomName: string) {
+        init(roomName: String) {
             self.roomName = roomName
         }
     }
