@@ -262,5 +262,12 @@ extension ChatRoomViewController: UITableViewDataSource, UITableViewDelegate {
     }
 }
 
-
 ```
+
+Great! We are one step closer to visually outputting our messages inside our chat interface!
+
+Now that we have appended that message to our messages array we want to be able to apply those contents to our cell in each row.
+
+To do this we are first going to need to create a custom Table View Cell, I called mine **MessageTableViewCell**. This cell is going to be in charge of displaying our message contents and other corresponding information.
+
+Take a moment to create your Table View Cell. Here is some boilerplate code concerning the layouts of our table view cells

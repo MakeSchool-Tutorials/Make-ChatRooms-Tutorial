@@ -16,9 +16,10 @@
 		1C04672D221B323D00EFCC5F /* CreateUserView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1C04672C221B323D00EFCC5F /* CreateUserView.xib */; };
 		1C04672F221B324900EFCC5F /* CreateUserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C04672E221B324900EFCC5F /* CreateUserView.swift */; };
 		1C046731221B32B000EFCC5F /* MessageInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C046730221B32B000EFCC5F /* MessageInputView.swift */; };
-		1C046733221B32E500EFCC5F /* Layouts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C046732221B32E500EFCC5F /* Layouts.swift */; };
+		1C046733221B32E500EFCC5F /* ChatRoomExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C046732221B32E500EFCC5F /* ChatRoomExtension.swift */; };
 		1C046735221B32F800EFCC5F /* protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C046734221B32F800EFCC5F /* protocols.swift */; };
 		1C046737221B330400EFCC5F /* ChatRoom.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C046736221B330400EFCC5F /* ChatRoom.swift */; };
+		1C05E2C32225082000C438A9 /* MessageTableViewCellExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C05E2C22225082000C438A9 /* MessageTableViewCellExtension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,9 +46,10 @@
 		1C04672C221B323D00EFCC5F /* CreateUserView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CreateUserView.xib; sourceTree = "<group>"; };
 		1C04672E221B324900EFCC5F /* CreateUserView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateUserView.swift; sourceTree = "<group>"; };
 		1C046730221B32B000EFCC5F /* MessageInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageInputView.swift; sourceTree = "<group>"; };
-		1C046732221B32E500EFCC5F /* Layouts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Layouts.swift; sourceTree = "<group>"; };
+		1C046732221B32E500EFCC5F /* ChatRoomExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRoomExtension.swift; sourceTree = "<group>"; };
 		1C046734221B32F800EFCC5F /* protocols.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = protocols.swift; sourceTree = "<group>"; };
 		1C046736221B330400EFCC5F /* ChatRoom.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRoom.swift; sourceTree = "<group>"; };
+		1C05E2C22225082000C438A9 /* MessageTableViewCellExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageTableViewCellExtension.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -128,7 +130,6 @@
 			isa = PBXGroup;
 			children = (
 				1C046730221B32B000EFCC5F /* MessageInputView.swift */,
-				1C046732221B32E500EFCC5F /* Layouts.swift */,
 				1C046734221B32F800EFCC5F /* protocols.swift */,
 			);
 			path = Helpers;
@@ -166,6 +167,8 @@
 		1C05E2C12224ECFD00C438A9 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				1C046732221B32E500EFCC5F /* ChatRoomExtension.swift */,
+				1C05E2C22225082000C438A9 /* MessageTableViewCellExtension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -274,7 +277,8 @@
 			files = (
 				1C046709221B30EE00EFCC5F /* ViewController.swift in Sources */,
 				1C046731221B32B000EFCC5F /* MessageInputView.swift in Sources */,
-				1C046733221B32E500EFCC5F /* Layouts.swift in Sources */,
+				1C046733221B32E500EFCC5F /* ChatRoomExtension.swift in Sources */,
+				1C05E2C32225082000C438A9 /* MessageTableViewCellExtension.swift in Sources */,
 				1C046735221B32F800EFCC5F /* protocols.swift in Sources */,
 				1C046737221B330400EFCC5F /* ChatRoom.swift in Sources */,
 				1C04672F221B324900EFCC5F /* CreateUserView.swift in Sources */,
