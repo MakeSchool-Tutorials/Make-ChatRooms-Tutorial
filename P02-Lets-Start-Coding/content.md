@@ -6,7 +6,7 @@ Once you have your node server up and running feel free to analyze the source co
 
 The output you should see upon successfully running your node server is this.
 
-#### OUTPUT IMAGE OF SUCCESSUL NODE SERVER RUNNING
+![SuccessfulOutput](./assets/SuccessfulOutput.png)
 
 Now that we have a functional server up and running lets starting making a functional client to match!
 
@@ -17,8 +17,7 @@ For example if we have view that takes user input and displays it in a label. We
 The first component of the application is to be able for a user to connect to our server. This in terms of the application itself is when users first enters the chat.
 
 When done with this component our intial screen will look like this!
-
-
+![StartingComponent](./assets/StartingComponent.png)
 
 Since we are adopting a top-down approach lets proceed to making our first xib file that will be in charge of taking the user's username and join the chat room.
 
@@ -111,7 +110,6 @@ Since our view should only contain logic pertaining to the view let's instatiate
 
 Great! Lets now run the program ... oh shoot there is a black screen!
 
-#### Insert the screen black simulator
 The reason being is that we haven't set our root view controller, take a minute to set our root view controller to be the CreateUserViewController
 
 [solution] 
@@ -130,11 +128,6 @@ func application(_ application: UIApplication, didFinishLaunchingWithOptions lau
     }
 
 ```
-#### Insert picture of user connecting on terminal
-
-Even though or view is still dark you should see that a user connected output in your terminal
-
-Thats great but our viewController doesn't have a corresponding view ... we now have to instantiate our view and add it as a subview
 
 [solution]
 ``` swift
@@ -151,8 +144,9 @@ Wait! There is still a problem here, when we press the join chat room button not
 
 
 When the user joins the chat room server we want to notify our server that we have a new user!
-#### GIF of when user enters the chat what is outputted to the terminal!
 
-Now that we have taken care of the component that the user is directly interacting with lets add some functionality! 
+#### When we implement our socket functionality!
 
-On the next page of this tutorial we are going to be modeling our domain!
+![ServerConnection](./assets/ServerConnection.gif)
+
+We will get there first we have to model attributes relating to the user ... we first have to model our domain. Stay tuned!
