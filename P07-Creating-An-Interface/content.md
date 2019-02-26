@@ -270,4 +270,94 @@ Now that we have appended that message to our messages array we want to be able 
 
 To do this we are first going to need to create a custom Table View Cell, I called mine **MessageTableViewCell**. This cell is going to be in charge of displaying our message contents and other corresponding information.
 
-Take a moment to create your Table View Cell. Here is some boilerplate code concerning the layouts of our table view cells
+``` swift
+class MessageTableViewCell: UITableViewCell {
+    //    var messageSender: MessageSender = .ourself
+    let messageContentLabel = UILabel()
+    let nameLabel = UILabel()
+    var message: Message?
+    
+    func apply(message: Message) { // When applying a message to the cell update below information
+        self.message = message
+        nameLabel.text = message.senderUsername
+        messageContentLabel.text = message.messageContent
+        setNeedsLayout()
+    }
+    
+    override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
+        messageContentLabel.clipsToBounds = true
+        messageContentLabel.textColor = .white
+        messageContentLabel.numberOfLines = 0
+
+        nameLabel.textColor = .lightGray
+        nameLabel.font = UIFont(name: "Helvetica", size: 10)
+
+        clipsToBounds = true
+        addSubview(messageContentLabel)
+        addSubview(nameLabel)
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    
+    // Measurements and layout for messages
+    private class func height(forText text: String, fontSize: CGFloat, maxSize: CGSize) -> CGFloat {
+        let font = UIFont(name: "Helvetica", size: fontSize)!
+        let attrString = NSAttributedString(string: text, attributes:[NSAttributedStringKey.font: font,
+                                                                      NSAttributedStringKey.foregroundColor: UIColor.white])
+        let textHeight = attrString.boundingRect(with: maxSize, options: .usesLineFragmentOrigin, context: nil).size.height
+        
+        return textHeight
+    }
+    
+    class func height(for message: Message) -> CGFloat {
+        let maxSize = CGSize(width: (UIScreen.main.bounds.size.width/3), height: CGFloat.greatestFiniteMagnitude)
+        
+        let nameHeight = height(forText: message.senderUsername, fontSize: 10, maxSize:maxSize)
+        let messageHeight = height(forText: message.messageContent, fontSize: 17, maxSize: maxSize)
+        
+        return nameHeight + messageHeight + 32 + 16
+    }
+}
+
+
+```
+
+Take a moment to create your Table View Cell. Here is some boilerplate code concerning the layouts of our table view cells. Additionally, lets uncomment the layout logic inside our MessageTableViewCell extension file in the extensions folder. 
+
+Now that we have created and configured our Message Table View cell lets refactor the cell for row at method inside our Chat Room View controller table view extension file!
+
+Take a moment to call the apply method on our message table view cell with the corresponding message from the messages array.
+
+#### Insert solution box here
+``` swift
+
+extension ChatRoomViewController: UITableViewDataSource, UITableViewDelegate {
+    // Extension of the ChatRoomView Controller to configure Table View
+    
+    ...
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = MessageTableViewCell(style: .default, reuseIdentifier: "MessageCell") 
+        cell.selectionStyle = .none
+        
+        let message = messages[indexPath.row]
+        cell.apply(message: message)
+        
+        return cell
+    }
+```
+
+We can now call our insertMessageCell method inside of our sendWasTappedMethod inside our ChatRoom extension that conforms to our message delegate
+
+``` swift
+extension ChatRoomViewController: MessageInputDelegate {
+    func sendWasTapped(message: String) {
+        ...
+        insertNewMessageCell(messageObject)
+       
+    }
+}
+```
