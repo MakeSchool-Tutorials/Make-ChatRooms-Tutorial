@@ -112,13 +112,30 @@ Inside our create room method ... inside the save action lets formulate a messag
 let saveAction = UIAlertAction(title: "Create/Join Room", style: .default) { (action) in
             guard let roomName = createRoomAlert.textFields?[0].text else {return}
             print("Name of the room user wants to create/join \(roomName)")
+
             let room = Room(roomName: roomName)
-            ChatRoom.shared.room = room
-            ChatRoom.shared.joinRoom()
+            ChatRoom.shared.joinRoom(room: room)
+
+            guard let username = userDefaults.value(forKey: "socketUsername") else {return}
+
+            // Temporary just to trigger our send message event emitter
+            var message = Message(messageContent: "Any message you want!", senderUsername: username, messageSender: true, roomOriginName: roomName)
+            ChatRoom.shared.sendMessage(message: message)
+
             self.tableView.reloadData()
         }
 
 ```
 
-#### Have to refactor when the student builds the chat interface
+Great! Lets run the code. You should now see output that looks like this!
 
+``` 
+    Incoming Message ->  { 
+        roomOriginName: 'test room',
+        messageContent: 'Any message you want!',
+        senderUsername: 'Matthew',
+        messageSender: true 
+    }
+```
+
+Now that we are able to successfully emit a message from our client and receive it on the server, in the next part of the tutorial lets make an interface to be able to send and receive messages!

@@ -296,7 +296,7 @@ Lets add two event listeners to our Chat Room file, one being for the usernameCo
             // Data comes back as type [Any] where the first value is the contents of the data
             let username = data[0]
             let userDefaults = UserDefaults()
-            userDefaults.set("socketUsername", forKey: String(describing: username)) // Safely cast username as string
+            userDefaults.set(String(describing: username), forKey: "socketUsername") // Safely cast username as string
         }
     }
 ```
@@ -403,7 +403,7 @@ We've implemented functionality concerning if two users were to enter the chat w
             print("Username has chosen a valid username")
             let username = data[0]
             let userDefaults = UserDefaults()
-            userDefaults.set("socketUsername", forKey: String(describing: username)) // Safely cast username as string
+            userDefaults.set(String(describing: username), forKey: "socketUsername") // Safely cast username as string
 
             // Notify the sender to transition to the room table view!
             self.roomTransitionDelegate?.transitionToRoom()
