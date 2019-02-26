@@ -406,8 +406,8 @@ We've implemented functionality concerning if two users were to enter the chat w
 
 This function will be triggered if our event listener for a username collision is triggered! As we can see the flow of communication starts from what the server responds back with initially.
 
-
-#### Insert picture of output of when the user sends a username
+![SuccessfulUsername](./assets/SuccessfulUsername.gif)
+In the next part of the tutorial we will transition to our list of active rooms. Stay tuned!
 
 Awesome you have now mirrored interactions between server and client, learned about event emitters and listeners, and one step closer to creating your real time messaging application!
 
