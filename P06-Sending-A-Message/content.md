@@ -102,9 +102,23 @@ Now that we have created our event emitter we need to be able to emit the messag
 ```
 
 
-Since we don't have an interface yet for a user to send a message lets create a message stub that we are going to emit from our server
+Since we don't have an interface yet for a user to send a message lets trigger it implicitly.
+Lets navigate to our RoomsTableViewController.
 
-Now that we have made our send message function that is in charge of emitting an event to our server, lets call it! Lets navigate to our RoomsTableViewController
+Inside our create room method ... inside the save action lets formulate a message object to emit
+
+``` swift
+...
+let saveAction = UIAlertAction(title: "Create/Join Room", style: .default) { (action) in
+            guard let roomName = createRoomAlert.textFields?[0].text else {return}
+            print("Name of the room user wants to create/join \(roomName)")
+            let room = Room(roomName: roomName)
+            ChatRoom.shared.room = room
+            ChatRoom.shared.joinRoom()
+            self.tableView.reloadData()
+        }
+
+```
 
 #### Have to refactor when the student builds the chat interface
 

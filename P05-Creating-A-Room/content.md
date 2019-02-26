@@ -206,6 +206,19 @@ When the user taps the creates a room button we want to emit an event to our ser
 
 Inside the alert controller we presented lets call our chat room method join room.
 
+``` swift
+    let saveAction = UIAlertAction(title: "Create/Join Room", style: .default) { (action) in
+            guard let roomName = createRoomAlert.textFields?[0].text,
+            let room = Room(roomName: roomName) 
+            else {return}
+
+            print("Name of the room user wants to create/join \(roomName)")
+            self.rooms.append(room)
+            ChatRoom.shared.joinRoom(room: room)
+            self.tableView.reloadData()
+        }
+```
+
 Wait ... we don't have a join room method, lets create one!
 
 #### Insert a solution box here
