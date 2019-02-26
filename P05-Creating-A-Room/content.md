@@ -90,8 +90,8 @@ class RoomsTableViewController: UITableViewController {
  ```
     class RoomsTableViewController : UITableViewController {
 
-        // Keep track of the room names that the user is in
-        var rooms: [String] = [String]()
+        // An array of Room Objects
+        var rooms: [Room] = [Room]()
         ...
          override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
@@ -148,9 +148,12 @@ Take some time to create an alert view that asks for the room name. Make sure to
         }
 
         let saveAction = UIAlertAction(title: "Create/Join Room", style: .default) { (action) in
-            guard let roomName = createRoomAlert.textFields?[0].text else {return}
+            guard let roomName = createRoomAlert.textFields?[0].text,
+            let room = Room(roomName: roomName) 
+            else {return}
+
             print("Name of the room user wants to create/join \(roomName)")
-            self.rooms.append(roomName)
+            self.rooms.append(room)
             self.tableView.reloadData()
         }
         
@@ -209,8 +212,8 @@ Wait ... we don't have a join room method, lets create one!
 ```
     class ChatRoom {
         ...
-        func joinRoom(roomName : String) {
-            // Emit an event to the server with the given roomName
+        func joinRoom(room : Room) {
+            // Emit an event to the server with the given room object
 
         }
     }
@@ -236,9 +239,9 @@ Take a moment to add an event emitter inside the joinRoom method we made
 #### Insert solution box here
 ```
     class ChatRoom {
-        func joinRoom(roomName: String) {
+        func joinRoom(room: Room) {
             ...
-            socket.emit("joinRoom", roomName)
+            socket.emit("joinRoom", room.roomName)
         }
     }
 ```
@@ -247,5 +250,5 @@ When we run our code now and trigger this function calling, you'll see a list of
 
 Congratulations, you are able to now join a room and or create one!
 
-In the next section of the tutorial, we are starting to hold more information about our user and room objects! No spoilers but lets start **modeling** our domain!
+In the next section of the tutorial, we are going to start emitting messages inside an active room!
 
