@@ -74,6 +74,12 @@ socket.on('chat message', function (message) { // Listening for an incoming chat
 
 ```
 
+1. We first get the username corresponding to the socket connection
+#####
+2. We then convert the json string representation that we made when we encoded the message object on the client side and turn it into a JSON object
+#####
+3. We then broadcast that message back to every user in the chat **excluding** the user who sent the message 
+
 Now that we have seen the event listener of the server side lets create an event emitter on our client side to see the intended log statement inside our terminal.
 
 Take a moment to create a method inside our Chat Room class that emits a message event

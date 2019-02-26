@@ -32,7 +32,7 @@ class MessageInputView: UIView{
     @objc func sendTapped() {
         // Reset the text view when the sender triggers the protocol function
         guard let messsage = textView.text else {return}
-        
+        print("User has typed in the message \(String(describing: message))")
     }
     
     override func layoutSubviews() {
@@ -75,3 +75,41 @@ extension MessageInputView: UITextViewDelegate {
 
 ```
 
+Now that we have created our view, we need to create a controller that is going to house the logic between our view and our other logic.
+
+Take a moment to create a ChatRoomViewController inside our controllers folder
+
+``` swift
+    class ChatRoomViewController: UIViewController {
+
+    let tableView = UITableView() // The messages are going to be organized using a UITableView
+    
+    // Instantiate the message input view that adds itself as a subview
+    let messageInputBar = MessageInputView()
+    
+    var messages = [Message]()
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+    }
+    
+}
+
+```
+We are using a table view to display the messages in rows. In our helpers folder lets **uncomment the logic in layouts.swift**. This file is responsible for boilerplate designing on our chat interface. We will be referencing this file throughout the rest of the tutorial!
+
+Great! Now that we have created a controller that instantiates our message input view lets run it. There is still one small problem though, there is no way to get to this view.
+
+If we go back to our didSelectRowAt method inside our RoomsTableViewController lets add the logic to transition to our ChatRoom.
+
+``` swift
+override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let chatRoomViewController = ChatRoomViewController()
+        self.navigationController?.pushViewController(chatRoomViewController, animated: true)
+    }
+
+```
+
+Now try running the program and entering a message ... you should see the print statement that outputs the message that the user wants to send.
+
+Take a break you deserve it! The next step is to configure our table view to be able to show our message history with other users!
