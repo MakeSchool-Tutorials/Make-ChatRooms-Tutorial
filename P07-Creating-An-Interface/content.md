@@ -11,6 +11,7 @@ Here is some started code to create our messaging view
 
 ``` swift
 
+[action]
 class MessageInputView: UIView{
     
     
@@ -79,6 +80,7 @@ Now that we have created our view, we need to create a controller that is going 
 
 Take a moment to create a ChatRoomViewController inside our controllers folder
 
+[action]
 ``` swift
     class ChatRoomViewController: UIViewController {
 
@@ -102,6 +104,7 @@ Great! Now that we have created a controller that instantiates our message input
 
 If we go back to our didSelectRowAt method inside our RoomsTableViewController lets add the logic to transition to our ChatRoom.
 
+
 ``` swift
 override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let chatRoomViewController = ChatRoomViewController()
@@ -118,7 +121,7 @@ To notify our controller that the user pressed send from the Message Input View 
 
 Take a moment to create a protocol and skeletal function in charge of notifying the controller that the send button was tapped.
 
-#### Insert solution box here
+[solution]
 ``` swift
 
 // In charge of notifying the controller and relaying the message to be sent over the socket connection!
@@ -129,7 +132,7 @@ protocol MessageInputDelegate: class {
 
 Now that we have created the protocol lets take a moment to add a delegate to our delegator and execute the sendWasTapped method.
 
-#### Insert solution box here
+[solution]
 ``` swift
      @objc func sendTapped() {
         // Reset the text view when the sender triggers the protocol function
@@ -152,8 +155,7 @@ extension ChatRoomViewController : MessageInputViewDelegate {
 
 Did you remember to also mark the receiver of the Chat Room delegate as self?
 
-#### Insert solution box here
-
+[solution]
 ``` swift
     class ChatRoomViewController : UIViewController {
         ...
@@ -170,7 +172,7 @@ We currently have a blocker ... we have no access to the room name that the user
 
 Take a moment to find a way to transmit the room name from when the user selects the room cell they want to enter to be able to parse the name inside our message object in the ChatRoomViewController.
 
-#### Insert solution box here
+[solution]
 ``` swift
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let chatRoomViewController = ChatRoomViewController()
@@ -188,6 +190,7 @@ Now that we have access to the last missing attribute inside our message object 
 
 Your sendWasTapped method should now look like this
 
+[info]
 ``` swift
     ...
     func sendWasTapped(message: String) {
@@ -204,6 +207,7 @@ Great! Lets run the code now. When you press send it should emit the message eve
 First we are going to need to create an array that is going to store our message objects.
 Take a moment to add a messages array to our ChatRoomViewController!
 
+[action]
 ``` swift
     class ChatRoomViewController : UIViewController {
         ... 
@@ -217,8 +221,7 @@ Lets create a new file that is composed of the ChatRoomViewController that confo
 
 Take a moment to configure this extension to conform to our table view data source and delegate
 
-#### Insert solution box here
-
+[solution]
 ``` swift
 
 extension ChatRoomViewController: UITableViewDataSource, UITableViewDelegate {
@@ -247,6 +250,7 @@ Lets implement a helper method that allows us to insert a message cell into the 
 
 Lets add the insertNewMessageCell method to our ChatRoomViewController extension.
 
+[action]
 ``` swift
 
 extension ChatRoomViewController: UITableViewDataSource, UITableViewDelegate {
@@ -270,6 +274,7 @@ Now that we have appended that message to our messages array we want to be able 
 
 To do this we are first going to need to create a custom Table View Cell, I called mine **MessageTableViewCell**. This cell is going to be in charge of displaying our message contents and other corresponding information.
 
+[info]
 ``` swift
 class MessageTableViewCell: UITableViewCell {
     //    var messageSender: MessageSender = .ourself
@@ -332,7 +337,7 @@ Now that we have created and configured our Message Table View cell lets refacto
 
 Take a moment to call the apply method on our message table view cell with the corresponding message from the messages array.
 
-#### Insert solution box here
+[solution]
 ``` swift
 
 extension ChatRoomViewController: UITableViewDataSource, UITableViewDelegate {
@@ -352,6 +357,7 @@ extension ChatRoomViewController: UITableViewDataSource, UITableViewDelegate {
 
 We can now call our insertMessageCell method inside of our sendWasTappedMethod inside our ChatRoom extension that conforms to our message delegate
 
+[action]
 ``` swift
 extension ChatRoomViewController: MessageInputDelegate {
     func sendWasTapped(message: String) {
@@ -373,6 +379,7 @@ We will need to make a protocol to alert our ChatRoomViewController that we have
 
 Lets add a RecievedMessage protocol to our protocols file.
 
+[solution]
 ``` swift
 protocol ReceivedMessage: class {
     func receivedMessage()
@@ -380,7 +387,7 @@ protocol ReceivedMessage: class {
 ```
 When we receive a message our event listener **chat message** is triggered, lets decode the incoming data into our Message model that we have made. Once you have done so lets trigger our received message delegate with the newly decoded message object.
 
-#### Insert solution box here
+[solution]
 ``` swift 
 class ChatRoom {
         ...
@@ -398,7 +405,7 @@ class ChatRoom {
 
 Take a moment to create an extension of our ChatRoomViewController that conforms to our newly created protocol!
 
-#### Insert solution box here
+[action]
 ``` swift
     extension ChatRoomViewController: ChatRoomDelegate {
     
