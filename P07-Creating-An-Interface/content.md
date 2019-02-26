@@ -112,4 +112,30 @@ override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: Inde
 
 Now try running the program and entering a message ... you should see the print statement that outputs the message that the user wants to send.
 
-Take a break you deserve it! The next step is to configure our table view to be able to show our message history with other users!
+Take a break you deserve it! The next step is to notify our controller that the user has sent a message and emit the corresponding event to our server.
+
+To notify our controller that the user pressed send from the Message Input View we need to create a protocol in order to do this.
+
+Take a moment to create a protocol and skeletal function in charge of notifying the controller that the send button was tapped.
+
+#### Insert solution box here
+``` swift
+
+// In charge of notifying the controller and relaying the message to be sent over the socket connection!
+protocol MessageInputDelegate: class {
+    func sendWasTapped(message: String)
+}
+```
+
+Now that we have created the protocol lets take a moment to add a delegate to our delegator and execute the sendWasTapped method.
+
+#### Insert solution box here
+``` swift
+     @objc func sendTapped() {
+        // Reset the text view when the sender triggers the protocol function
+        guard let messsage = textView.text else {return}
+        textView.text = "" // Reset the text field after user sends a message
+        
+        delegate?.sendWasTapped(message: messsage)
+    }
+```

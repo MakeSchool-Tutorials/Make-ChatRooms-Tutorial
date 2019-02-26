@@ -310,7 +310,7 @@ As we mentioned earlier if there is a username collision we want to display an a
 #### Insert link to more info on delegates if need be
 #### Introducing delegates!
 
-At this point in time this is assuming you have a basic understanding on how delegates are used to pass information between senders and receivers but if not feel free to read more on [delegates]()
+At this point in time this is assuming you have a basic understanding on how delegates are used to pass information between delegators and delegate receivers but if not feel free to read more on [delegates]()
 
 The delegate we are going to create is going to be in charge of notifying our Chat Room View Controller to display an alert!
 
@@ -331,7 +331,7 @@ protocol UsernameDelegate: class {
 }
 ```
 
-The next step in this process is to create a delegate that our sender is going to trigger! Lets map out what our senders and receivers look like.
+The next step in this process is to create a delegate that our sender is going to trigger! Lets map out what our delegators and and delegate receivers look like.
 
 The sender is going to be the event listener usernameCollision because only at that point in time do we want to display the alert.
 
