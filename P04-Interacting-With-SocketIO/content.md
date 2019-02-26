@@ -288,10 +288,9 @@ Lets add two event listeners to our Chat Room file, one being for the usernameCo
 
 As we mentioned earlier if there is a username collision we want to display an alert to the user that they have to re-type their username!
 
-#### Insert link to more info on delegates if need be
 #### Introducing delegates!
 
-At this point in time this is assuming you have a basic understanding on how delegates are used to pass information between delegators and delegate receivers but if not feel free to read more on [delegates]()
+At this point in time this is assuming you have a basic understanding on how delegates are used to pass information between delegators and delegate receivers but if not feel free to read more on [delegates](https://www.appcoda.com/swift-delegate/)
 
 The delegate we are going to create is going to be in charge of notifying our Chat Room View Controller to display an alert!
 
@@ -363,11 +362,12 @@ Take a moment to make our receiver conform to our Room Transition protocol
 To test this functionality if we add two simulators side by side and enter the chat with the same username the second simulator should appear with an alert view asking you to re-type your username!
  * To run two simulators side by side run the project on the iPhone 8 and the iPhone 7
 
-#### Insert GIF of username collision alert happening
+![UsernameCollision](./assets/UsernameCollision.gif)
+
 
 We've implemented functionality concerning if two users were to enter the chat with the same username, but what if the user chooses a valid username?
 
-#### Take a moment to execute the same functionality but for our room transition protocol
+###### Take a moment to execute the same functionality but for our room transition protocol
 
 [solution]
 ```  swift
