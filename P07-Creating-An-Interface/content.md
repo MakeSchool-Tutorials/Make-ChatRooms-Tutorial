@@ -361,3 +361,37 @@ extension ChatRoomViewController: MessageInputDelegate {
     }
 }
 ```
+
+Great! Lets run our program. Now when you send a message you should see a green message bubble inserted! 
+
+
+#### Insert GIF here
+
+You'll notice that when another user connected to the same room messages us we don't see a chat bubble inserted. Thats because we are only inserting a message cell when we send a message. Lets implement one of the final functionalities, inserting a message cell when we receive a message.
+
+We will need to make a protocol to alert our ChatRoomViewController that we have received a message.
+
+Lets add a RecievedMessage protocol to our protocols file.
+
+``` swift
+protocol ReceivedMessage: class {
+    func receivedMessage()
+}
+```
+When we receive a message our event listener **chat message** is triggered, lets decode the incoming data into our Message model that we have made. Once you have done so lets trigger our received message delegate with the newly decoded message object.
+
+#### Insert solution box here
+``` swift 
+class ChatRoom {
+        ...
+        var receivedMessageDelegate: ReceivedMessage?
+
+        func eventListeners() {
+            ...
+            socket.on("chat message") { (data, ack) in
+                guard let message = try? JSONDecoder().decode(Message.self, from: data[0] as! Data) else {return}
+                self.receivedMessageDelegate?.recievedMessage(message: message)
+        }
+    }
+}
+```
