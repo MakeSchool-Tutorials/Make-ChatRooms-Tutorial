@@ -13,6 +13,7 @@ Lets first map out attributes that our message would contain.
     3. A boolean indicating whether or not we are the message sender
     4. The room that the message originated from
 
+[action]
 ``` swift
 
 class Message {
@@ -35,7 +36,7 @@ class Message {
 
  Take a moment to make your Message class in the models folder conform to the codable protocols.
 
- #### Insert solution box here
+[solution]
  ``` swift
 class Message: Codable {
         ...
@@ -61,6 +62,8 @@ class Message: Codable {
  ```
 
 Our event listener in the backend is listening for the chat message event emitter and is expecting a message object to come with it when the event is emitted.
+
+[info]
 ``` javascript
 # Code snippet from node backend
 socket.on('chat message', function (message) { // Listening for an incoming chat message
@@ -84,7 +87,7 @@ Now that we have seen the event listener of the server side lets create an event
 
 Take a moment to create a method inside our Chat Room class that emits a message event
 
-#### Insert a solution box here
+[solution]
 ``` swift
     class ChatRoom {
         ...
@@ -96,6 +99,7 @@ Take a moment to create a method inside our Chat Room class that emits a message
 
 Now that we have created our event emitter we need to be able to emit the message object over the network therefore lets put our codable conformance to work!
 
+[solution]
 ``` swift
     class ChatRoom {
         ...
@@ -113,6 +117,7 @@ Lets navigate to our RoomsTableViewController.
 
 Inside our create room method ... inside the save action lets formulate a message object to emit
 
+[solution]
 ``` swift
 ...
 let saveAction = UIAlertAction(title: "Create/Join Room", style: .default) { (action) in
