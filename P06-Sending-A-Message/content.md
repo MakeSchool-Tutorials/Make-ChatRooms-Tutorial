@@ -1,18 +1,38 @@
 ## Sending a Message
 
-Now that we are able to join a room on our server lets start working on the ability to message other users in that room! 
+Now that we are able to join a room on our server lets start working on the ability to message other users in that room.
 
-Disclaimer: The node server that has been running is listening for a chat message event, the problem is that it is looking for a message object after we create our message model! For this first step we want to be able to just emit a message to the server.
+Disclaimer: The node server that has been running is listening for a chat message event, the problem is that it is looking for a message object after we create our message model.
 
-This listener has been created on the server side to listen for just the message, later on in the tutorial we will refactor to send the whole message object!
+Now would be a great time to start modeling our message object!
+
+Lets first map out attributes that our message would contain.
+
+    1. The username of the sender
+    2. The content of the message
+    3. A boolean indicating whether or not we are the message sender
+    4. The room that the message originated from
+
+``` swift
+
+class Message: Codable {
+    let messageContent: String
+    let senderUsername: String
+    var messageSender: Bool?
+    var roomOriginName: String
+    
+    init(messageContent: String, senderUsername: String, messageSender: Bool?, roomOriginName: String) {
+        self.messageContent = messageContent
+        self.senderUsername = senderUsername
+        self.messageSender = messageSender
+        self.roomOriginName = roomOriginName
+    }
+}
 
 ```
-    # Code snippet taken from the node server that we've created!
 
-    socket.on("message", function(messageContent) {
-        console.log("Incoming message contents : ", messageContent)
-    });
-```
+
+
 
 1. We are listening for the event emitter called _message_ and with the data passed with that event we are going to print the incoming messages content!
 

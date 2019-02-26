@@ -7,7 +7,7 @@ It's time to start modeling our domain, or listing out key attributes that will 
 Take some time to think about some attributes that our user will have.
 
 #### Insert a solution box here
-```
+``` swift
     class User {
         var username: String
         var activeRooms : [Room]? 
@@ -36,7 +36,7 @@ Lets start of with the attribute we know we'll need, the room Name!
 Take a moment to implement our room model
 
 #### Insert a solution box here
-```
+``` swift
     class Room {
         var roomName : String
 

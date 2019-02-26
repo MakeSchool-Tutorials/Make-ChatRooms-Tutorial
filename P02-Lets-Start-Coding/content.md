@@ -38,7 +38,7 @@ Now that we have created our visual components let us connect that to our code s
 
 Once you have created your file for your view the starting contents should look like this *Arrow down
 
-```
+``` swift
     class CreateUserView: UIView {
         override init(frame: CGRect) {
             super.init(frame: frame)
@@ -52,7 +52,7 @@ Once you have created your file for your view the starting contents should look 
 
 Inside lets create a function that is in charge of initializing the view when called from the parent view controller. This allows us to be able to configure this view no matter where its called. Add this function to our View
 
-```
+``` swift
       private func commonInit() {
         
         // When this function is executed it will load the corresponding xib file
@@ -74,7 +74,7 @@ Inside lets create a function that is in charge of initializing the view when ca
 
 Now that we have the corresponding swift file we can connect our UIElements to code!
 
-```
+``` swift
 
 class CreateUserView: UIView {
     ... // You'll see these three dots throughout the tutorial meaning that we are adding code!

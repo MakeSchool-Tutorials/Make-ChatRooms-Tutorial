@@ -12,7 +12,7 @@ First lets create our table view that is going to be responsible for displaying 
 
 Lets create a file in our controllers folder called **RoomsTableViewController**
 
-```
+``` swift
 class RoomsTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,7 +28,7 @@ Now that we have created the Rooms Table View file lets add the intended methods
 
 Take a minute to add the delegate and data source methods numberOfRowsInSection, cellForRowAt, didSelectRowAt
 #### Insert Solution Box here
-```
+``` swift
 class RoomsTableViewController: UITableViewController {
     ... 
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -50,7 +50,7 @@ We know that there is going to be cells displaying the name of the room therefor
 
 Take a minute to create your table view cell and to register it in the view did load method of our table view controller
 #### Add solution box here 
-```
+``` swift
 class ConfigureCell: UITableViewCell {}
 
 class RoomsTableViewController : UITableViewController {
@@ -71,7 +71,7 @@ Take a minute to dequeue (return) a cell with the same identifier as the cell th
 
 Insert Solution box here
 
-```
+``` swift
 class RoomsTableViewController: UITableViewController {
     ... 
      override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -87,7 +87,7 @@ class RoomsTableViewController: UITableViewController {
 
  The number of cells that we want to appear directly corresponds to the number of rooms that the user is actively in! Lets create an array at the top of the file that is used to keep track of the rooms that the user is actively in!
 
- ```
+ ``` swift
     class RoomsTableViewController : UITableViewController {
 
         // An array of Room Objects
@@ -111,7 +111,7 @@ class RoomsTableViewController: UITableViewController {
  Take a minute to implement a bar button programatically.
 
 #### Insert solution box here
-```
+``` swift
     //     MARK TODO: Can these UIElements be extracted to a helper file?
 
     lazy var createRoomButton: UIBarButtonItem = {
@@ -136,7 +136,7 @@ Lets create a method called createRoom(), dont forget to prefix the method defin
 Take some time to create an alert view that asks for the room name. Make sure to add save and cancel actions to allow our user to proceed in the application.
 
 #### Insert solution box here
-```
+``` swift
      @objc func createRoom(sender: UIBarButtonItem) {
         print("User wants to create a room")
         
@@ -176,7 +176,7 @@ Great now lets run our code ... but wait we never implemented a way to transitio
 
 Lets add the functionality inside our delegate method transitionToRoom to push the RoomsTableViewController on top of the stack.
 #### Insert solution box here
-```
+``` swift
 class CreateUserViewController : UIViewController {
     ...
 
@@ -209,7 +209,7 @@ Inside the alert controller we presented lets call our chat room method join roo
 Wait ... we don't have a join room method, lets create one!
 
 #### Insert a solution box here
-```
+``` swift
     class ChatRoom {
         ...
         func joinRoom(room : Room) {
@@ -220,7 +220,7 @@ Wait ... we don't have a join room method, lets create one!
 ```
 When asked to join a room our node server is listening for an event title _join room_ as you can see in the code snippet below.
 
-```
+``` swift
      // Triggered when a user wants to create/join a room
     socket.on("joinRoom", function (roomName) {
         console.log(socket.id + " has joined the room " + roomName)
@@ -237,7 +237,7 @@ Since our server is listening for this event lets do our duty and trigger it fro
 Take a moment to add an event emitter inside the joinRoom method we made
 
 #### Insert solution box here
-```
+``` swift
     class ChatRoom {
         func joinRoom(room: Room) {
             ...
