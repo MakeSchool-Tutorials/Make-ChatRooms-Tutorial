@@ -395,3 +395,51 @@ class ChatRoom {
     }
 }
 ```
+
+Take a moment to create an extension of our ChatRoomViewController that conforms to our newly created protocol!
+
+#### Insert solution box here
+``` swift
+    extension ChatRoomViewController: ChatRoomDelegate {
+    
+    func recievedMessage(message: Message) {
+        message.messageSender = false // Will always be false due to us broadcasting messages ... therefore if we receive a message we couldn't have possibly sent it.
+        
+        // If we are connected to multiple rooms we only want to display messages that are being sent to the current room we are visually in!
+        if message.roomOriginName == self.roomName {
+            insertNewMessageCell(message)
+        }
+        
+    }
+}
+```
+
+1. We are setting our message sender to false due to our logic contained inside the MessageTableViewCell extension file
+
+ - ``` swift
+        ... 
+         //ACTION: Set the right color and position for each message depending on whos the sender
+            if self.message?.messageSender == true {
+                nameLabel.isHidden = true
+                
+                messageContentLabel.center = CGPoint(x: bounds.size.width - messageContentLabel.bounds.size.width/2.0 - 16, y: bounds.size.height/2.0)
+                messageContentLabel.backgroundColor = UIColor(red: 24/255, green: 180/255, blue: 128/255, alpha: 1.0)
+            } else {
+                nameLabel.isHidden = false
+                nameLabel.sizeToFit()
+                nameLabel.center = CGPoint(x: nameLabel.bounds.size.width/2.0 + 16 + 4, y: nameLabel.bounds.size.height/2.0 + 4)
+                
+                messageContentLabel.center = CGPoint(x: messageContentLabel.bounds.size.width/2.0 + 16, y: messageContentLabel.bounds.size.height/2.0 + nameLabel.bounds.size.height + 8)
+                messageContentLabel.backgroundColor = .lightGray
+            }
+            
+        }
+    ```
+
+2. Based off the message sender we know how to configure the message cell correctly ... this will result in a gray message bubble being inserted as opposed to a green message bubble when we are the message sender
+
+
+#### Insert GIF here
+
+
+Great! Now we are able to send and receive messages through our interface! The rest of the tutorial contains stretch challenges and possible refactors that can be made!
