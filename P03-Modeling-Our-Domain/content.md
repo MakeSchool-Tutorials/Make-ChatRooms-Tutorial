@@ -6,7 +6,7 @@ It's time to start modeling our domain, or listing out key attributes that will 
 
 Take some time to think about some attributes that our user will have.
 
-#### Insert a solution box here
+[solution]
 ``` swift
     class User {
         var username: String
@@ -35,7 +35,7 @@ Lets start of with the attribute we know we'll need, the room Name!
 
 Take a moment to implement our room model
 
-#### Insert a solution box here
+[solution]
 ``` swift
     class Room {
         var roomName : String
@@ -52,6 +52,7 @@ When altering the number of active rooms that a user has we want to make sure th
 
 Lets make a singleton of our user! Take a moment to create a file called SharedUser.swift
 
+[action]
 ``` swift
 import Foundation
 class SharedUser {

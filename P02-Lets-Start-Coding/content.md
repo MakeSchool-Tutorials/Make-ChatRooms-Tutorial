@@ -38,6 +38,7 @@ Now that we have created our visual components let us connect that to our code s
 
 Once you have created your file for your view the starting contents should look like this *Arrow down
 
+[action]
 ``` swift
     class CreateUserView: UIView {
         override init(frame: CGRect) {
@@ -52,6 +53,7 @@ Once you have created your file for your view the starting contents should look 
 
 Inside lets create a function that is in charge of initializing the view when called from the parent view controller. This allows us to be able to configure this view no matter where its called. Add this function to our View
 
+[action]
 ``` swift
       private func commonInit() {
         
@@ -74,6 +76,7 @@ Inside lets create a function that is in charge of initializing the view when ca
 
 Now that we have the corresponding swift file we can connect our UIElements to code!
 
+[action]
 ``` swift
 
 class CreateUserView: UIView {
