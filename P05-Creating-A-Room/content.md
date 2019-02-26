@@ -6,7 +6,8 @@ Now that we are able to assign a username to a socket connection lets progress t
 
 This is what the end product of this page should look like.
 
-#### Insert gif image of how this flow will look
+##### This is how the finished component will look like!
+![CreateRoom](./assets/CreateRoom.gif)
 
 First lets create our table view that is going to be responsible for displaying all the rooms that the current user is actively in!
 
