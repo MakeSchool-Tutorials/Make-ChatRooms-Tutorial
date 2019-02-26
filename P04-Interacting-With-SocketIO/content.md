@@ -189,12 +189,13 @@ The static keyword denotes that the value can be accessed without the instantiat
 
 If we make a single instance of the ChatRoom all values altered are in that single instance which is good because we never have to worry about the management of multiple instances! Therefore for any logic relating to the chat room if we access it through the shared variable we can maintain these values!
 
-Lets grab a hold of the username that the user types in, once we have that we can pass that to our send username method in the ChatRoom file.
+Lets construct our user object with the typed username, and once we have that we can pass that to our send username method in the ChatRoom file.
 
 ```
 @IBAction func joinChatRoomButton(_ sender: Any) {
         guard let username = userNameTextField.text else {return}
-        ChatRoom.shared.sendUsername(username: username)
+        let user = User(username: username, activeRooms: nil)
+        ChatRoom.shared.sendUsername(user: user)
     }
 ```
 
@@ -204,7 +205,7 @@ Wait! There is no sendUsername method! Take a minute to implement a method stub 
 ```
 class ChatRoom {
     ... 
-    func sendUsername(username: String) {
+    func sendUsername(user: User) {
        // In charge of emitting an event to server with the passed username 
     }
 }
@@ -228,8 +229,8 @@ Take a minute to see if you can emit an event from ours socket
 ```
 class ChatRoom {
     ...
-    func sendUsername(username: String) {
-        socket.emit("socketUsername", username)
+    func sendUsername(user: User) {
+        socket.emit("socketUsername", user.username)
     }
 }
 
