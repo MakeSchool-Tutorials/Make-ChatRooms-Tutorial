@@ -18,7 +18,6 @@ The first component of the application is to be able for a user to connect to ou
 
 When done with this component our intial screen will look like this!
 
-#### ADD GIF OF THE INTIAL VIEW CONTROLLER SCENE
 
 
 Since we are adopting a top-down approach lets proceed to making our first xib file that will be in charge of taking the user's username and join the chat room.
@@ -32,7 +31,7 @@ Create three components on the view:
 3. And a button("Text optional of "Join ChatRoom")
 
 
-If done correctly, it should resemble the GIF up above!
+If done correctly, it should resemble the image up above!
 
 Now that we have created our visual components let us connect that to our code so we can manipulate these elements. Proceed to make the corresponding swift file for our xib view if you haven't done so already.
 
@@ -93,6 +92,60 @@ class CreateUserView: UIView {
 }
 
 ```
+We are going to need to make a view contoller to house our CreateUserView.
+
+Lets create view controller called CreateUserViewController, which should be created under our controllers folder.
+
+[action]
+``` swift
+class CreateUserViewController : UIViewController {
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+    }
+}
+```
+
+Since our view should only contain logic pertaining to the view let's instatiate the chat room inside our CreateUserViewController 
+
+
+Great! Lets now run the program ... oh shoot there is a black screen!
+
+#### Insert the screen black simulator
+The reason being is that we haven't set our root view controller, take a minute to set our root view controller to be the CreateUserViewController
+
+[solution] 
+``` swift
+func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+        // Override point for customization after application launch.
+        
+        window = UIWindow(frame: UIScreen.main.bounds)
+        window?.makeKeyAndVisible()
+        
+        
+        let createUserVC = CreateUserViewController()
+        
+        window?.rootViewController = UINavigationController(rootViewController: createUserVC)
+        return true
+    }
+
+```
+#### Insert picture of user connecting on terminal
+
+Even though or view is still dark you should see that a user connected output in your terminal
+
+Thats great but our viewController doesn't have a corresponding view ... we now have to instantiate our view and add it as a subview
+
+[solution]
+``` swift
+override func viewDidLoad() {
+        super.viewDidLoad()
+        let createUserView = CreateUserView()
+        createUserView.frame = self.view.bounds
+        self.view.addSubview(createUserView)
+ }
+```
+
 
 Wait! There is still a problem here, when we press the join chat room button nothing happens ... so I guess the appropriate question is what should happen!
 
@@ -102,4 +155,4 @@ When the user joins the chat room server we want to notify our server that we ha
 
 Now that we have taken care of the component that the user is directly interacting with lets add some functionality! 
 
-On the next page of this tutorial we are going to be interacting directly with the Socket IO wrapper that can be found [here](https://github.com/socketio/socket.io-client-swift)
+On the next page of this tutorial we are going to be modeling our domain!

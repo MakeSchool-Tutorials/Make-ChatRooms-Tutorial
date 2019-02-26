@@ -137,48 +137,12 @@ class CreateUserViewController : UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        ...
     }
 }
 ```
 
-Great! Lets now run the program ... oh shoot there is a black screen!
-
-#### Insert the screen black simulator
-The reason being is that we haven't set our root view controller, take a minute to set our root view controller to be the CreateUserViewController
-
-[solution] 
-``` swift
-func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
-        
-        window = UIWindow(frame: UIScreen.main.bounds)
-        window?.makeKeyAndVisible()
-        
-        
-        let createUserVC = CreateUserViewController()
-        
-        window?.rootViewController = UINavigationController(rootViewController: createUserVC)
-        return true
-    }
-
-```
-#### Insert picture of user connecting on terminal
-
-Even though or view is still dark you should see that a user connected output in your terminal
-
-Thats great but our viewController doesn't have a corresponding view ... we now have to instantiate our view and add it as a subview
-
-[solution]
-``` swift
-override func viewDidLoad() {
-        super.viewDidLoad()
-        let createUserView = CreateUserView()
-        createUserView.frame = self.view.bounds
-        self.view.addSubview(createUserView)
-    }
-```
-
-Great now we have a user connected one of the last steps that we have to complete is assiging a username to the socket connection! Therefore to do so we need the username that the user types in, lets head over to our CreateUserView!
+Now that we have a user connected one of the last steps that we have to complete is assiging a username to the socket connection! Therefore to do so we need the username that the user types in, lets head over to our CreateUserView!
 
 Before we move on ... lets introduce the concept of singletons!
 
@@ -198,7 +162,7 @@ class ChatRoom {
 
 The static keyword denotes that the value can be accessed without the instantiation of the class! Now the value we set to shared variable is instantiation of the ChatRoom itself ... wait I'm confused now!
 
-If we make a single instance of the ChatRoom all values altered are in that single instance which is good because we never have to worry about the management of multiple instances! Therefore for any logic relating to the chat room if we access it through the shared variable we can maintain these values!
+If we make a single instance of the ChatRoom all values altered are in that single instance which is good because we never have to worry about the management of multiple instances! Therefore for any logic relating to the chat room if we access it through the shared variable we can maintain these values! 
 
 Lets construct our user object with the typed username, and once we have that we can pass that to our send username method in the ChatRoom file.
 
@@ -212,6 +176,10 @@ Lets construct our user object with the typed username, and once we have that we
 ```
 
 Wait! There is no sendUsername method! Take a minute to implement a method stub called sendUsername.
+
+
+Since we are instantiating the chat room inside of itself we can get rid of our chat room instantiation that we declared up above
+
 
 [solution]
 ``` swift
