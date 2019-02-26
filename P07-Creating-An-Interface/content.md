@@ -139,3 +139,128 @@ Now that we have created the protocol lets take a moment to add a delegate to ou
         delegate?.sendWasTapped(message: messsage)
     }
 ```
+
+Now that we have implemented the delegator side of the equation lets make our controller conform to our new protocol. Through separation of concerns lets put this file inside the extensions folder!
+
+``` swift
+extension ChatRoomViewController : MessageInputViewDelegate {
+        func sendWasTapped(message: String) {
+            // In charge of triggering our chat message event emitter and configuring table view to show newly made message
+    }
+}
+```
+
+Did you remember to also mark the receiver of the Chat Room delegate as self?
+
+#### Insert solution box here
+
+``` swift
+    class ChatRoomViewController : UIViewController {
+        ...
+        override func viewWillAppear(_ animated: Bool) {
+            ...
+            ChatRoom.shared.delegate = self
+        }
+    }
+```
+
+Take a moment to implement trigger our send message method inside our ChatRoom with the given message contents. To do so we need to formulate our message object. 
+
+We currently have a blocker ... we have no access to the room name that the user is currently in!
+
+Take a moment to find a way to transmit the room name from when the user selects the room cell they want to enter to be able to parse the name inside our message object in the ChatRoomViewController.
+
+#### Insert solution box here
+``` swift
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let chatRoomViewController = ChatRoomViewController()
+        chatRoomViewController.roomName = SharedUser.shared.user?.activeRooms?[indexPath.row].roomName ?? "Empty Room"
+        self.navigationController?.pushViewController(chatRoomViewController, animated: true)
+    }
+
+    class ChatRoomViewController : UIViewController {
+        ... 
+        var roomName = ""
+    }
+```
+
+Now that we have access to the last missing attribute inside our message object lets continue to formulate our message object and send it to our chat room logic
+
+Your sendWasTapped method should now look like this
+
+``` swift
+    ...
+    func sendWasTapped(message: String) {
+        let userDefaults = UserDefaults()
+        guard let username = userDefaults.value(forKey: "username") else {return}
+        print("Sent Message \(message)")
+        let messageObject = Message(messageContent: message, senderUsername: username as! String, messageSender: true, roomOriginName: self.roomName)
+        ChatRoom.shared.sendMessage(message: messageObject)       
+    }
+```
+
+Great! Lets run the code now. When you press send it should emit the message event to our server ... but nothing shows up on the screen lets fix that!
+
+First we are going to need to create an array that is going to store our message objects.
+Take a moment to add a messages array to our ChatRoomViewController!
+
+``` swift
+    class ChatRoomViewController : UIViewController {
+        ... 
+        var messages = [Message]()
+        ...
+    }
+```
+
+Lets create a new file that is composed of the ChatRoomViewController that conforms to the data source and delegate of the UITableView. Inside extensions lets make a new file called
+**ChatRoomViewController+TableViewController.swift**. 
+
+Take a moment to configure this extension to conform to our table view data source and delegate
+
+#### Insert solution box here
+
+``` swift
+
+extension ChatRoomViewController: UITableViewDataSource, UITableViewDelegate {
+    // Extension of the ChatRoomView Controller to configure Table View
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        // Return the number of cells corresponding to the number of messages we currently have
+        return messages.count
+    }
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+    }
+    
+}
+```
+Now that we have the proper methods corresponding to our table view lets add some functionality! 
+
+Lets implement a helper method that allows us to insert a message cell into the view without having to reload the table view. For example if every time you sent a message to someone the whole screen reloaded that would get quite annoying!
+
+Lets add the insertNewMessageCell method to our ChatRoomViewController extension.
+
+``` swift
+
+extension ChatRoomViewController: UITableViewDataSource, UITableViewDelegate {
+    func insertNewMessageCell(_ message: Message) {
+        messages.append(message)
+        let indexPath = IndexPath(row: messages.count - 1, section: 0)
+        
+        // Able to do an animation of inserting without needing to reload
+        tableView.beginUpdates()
+        tableView.insertRows(at: [indexPath], with: .bottom)
+        tableView.endUpdates()
+        tableView.scrollToRow(at: indexPath, at: .bottom, animated: true)
+    }
+}
+
+
+```

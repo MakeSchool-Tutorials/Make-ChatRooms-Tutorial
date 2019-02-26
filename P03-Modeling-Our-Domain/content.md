@@ -46,6 +46,22 @@ Take a moment to implement our room model
     }
 ```
 
+Disclaimer: Singletons can often represent poorly architected code due to it allowing global access, therefore a stretch challenge we will implement is a safer and cleaner way to avoid singletons.
+
+When altering the number of active rooms that a user has we want to make sure that we alter the same user instance throughout the application. There will a stretch challenge at the end of this tutorial to refactor the use of singletons to use something safer to maintain access to our object throughout the application.
+
+Lets make a singleton of our user! Take a moment to create a file called SharedUser.swift
+
+``` swift
+import Foundation
+class SharedUser {
+    static var shared = SharedUser()
+    var user: User?
+}
+```
+
+From now on when referencing our current user we will be doing so through are shared user instance!
+
 Congrats you have modeled the domain for two objects that we have been working with thus far!
 
 

@@ -78,8 +78,9 @@ class RoomsTableViewController: UITableViewController {
 
         let cell = tableView.dequeueReusableCell(withIdentifier: "RoomTableViewCell", for: indexPath)
 
-        // Display test content until we have actual rooms to display!
-        cell.textLabel?.text = "Test Room"
+         if let user = SharedUser.shared.user {
+            cell.textLabel?.text = user.activeRooms?[indexPath.row].roomName
+        }
         return cell
     }
 }
@@ -94,8 +95,8 @@ class RoomsTableViewController: UITableViewController {
         var rooms: [Room] = [Room]()
         ...
          override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
-        return rooms.count
+            let rooms = SharedUser.shared.user?.activeRooms ?? [Room]()
+            return rooms.count
         }
     }
  ```
@@ -153,7 +154,7 @@ Take some time to create an alert view that asks for the room name. Make sure to
             else {return}
 
             print("Name of the room user wants to create/join \(roomName)")
-            self.rooms.append(room)
+            SharedUser.shared.user?.activeRooms?.append(room)
             self.tableView.reloadData()
         }
         
@@ -213,7 +214,7 @@ Inside the alert controller we presented lets call our chat room method join roo
             else {return}
 
             print("Name of the room user wants to create/join \(roomName)")
-            self.rooms.append(room)
+            SharedUser.shared.user?.activeRooms?.append(room)
             ChatRoom.shared.joinRoom(room: room)
             self.tableView.reloadData()
         }
