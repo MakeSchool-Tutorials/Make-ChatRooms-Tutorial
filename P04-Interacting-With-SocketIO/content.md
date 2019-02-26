@@ -91,7 +91,7 @@ As we mentioned earlier this communication can be bi-directional meaning that th
 
 To listen out for events that our server has emitted we can use the on method which listens out for an event when triggered. For example ...
 
-
+[info]
 ``` swift
 socket.on("specificEvent") { (data, ack) in 
     print("Based of this event I want to trigger some functionality")
@@ -104,7 +104,7 @@ We can even listen out for generic events such as connecting, and disconnection 
 
 In the stubbed out function event listeners lets add the event listener for when a socket connects!
 
-#### Have to add solution box for this code snippet
+[solution]
 ``` swift
 socket.on(clientEvent: .connect) { (data, ack) in
     print("User has connected")
@@ -117,6 +117,8 @@ Since we added our first event listener lets call the function inside this class
 Now that we have made our event listener lets finally make a connection to the server. We are going to need to make a view contoller to house the logic between user interactions and our chat room logic
 
 Should be located inside the View Controllers folder~
+
+[action]
 ``` swift
 class CreateUserViewController : UIViewController {
 
@@ -127,6 +129,8 @@ class CreateUserViewController : UIViewController {
 ```
 
 Since our view should only contain logic pertaining to the view let's instatiate the chat room inside our CreateUserViewController 
+
+[action]
 ``` swift
 class CreateUserViewController : UIViewController {
     let chatRoom = ChatRoom() // Upon initialization the socket will make a connection
@@ -142,7 +146,7 @@ Great! Lets now run the program ... oh shoot there is a black screen!
 #### Insert the screen black simulator
 The reason being is that we haven't set our root view controller, take a minute to set our root view controller to be the CreateUserViewController
 
-#### Insert the solution box 
+[solution] 
 ``` swift
 func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
@@ -164,7 +168,7 @@ Even though or view is still dark you should see that a user connected output in
 
 Thats great but our viewController doesn't have a corresponding view ... we now have to instantiate our view and add it as a subview
 
-#### Insert solution box here
+[solution]
 ``` swift
 override func viewDidLoad() {
         super.viewDidLoad()
@@ -184,6 +188,7 @@ Similar to how we only want one instance of a socket connection we also want one
 
 Inside of our Chat Room class insert the following line of code
 
+[action]
 ``` swift
 class ChatRoom {
     static var shared = ChatRoom()
@@ -197,6 +202,7 @@ If we make a single instance of the ChatRoom all values altered are in that sing
 
 Lets construct our user object with the typed username, and once we have that we can pass that to our send username method in the ChatRoom file.
 
+[action]
 ``` swift
 @IBAction func joinChatRoomButton(_ sender: Any) {
         guard let username = userNameTextField.text else {return}
@@ -207,7 +213,7 @@ Lets construct our user object with the typed username, and once we have that we
 
 Wait! There is no sendUsername method! Take a minute to implement a method stub called sendUsername.
 
-#### Insert solution box here
+[solution]
 ``` swift
 class ChatRoom {
     ... 
@@ -231,7 +237,7 @@ If we look back at the code snippet at the start of the file we can see the even
 
 Take a minute to see if you can emit an event from ours socket
 
-##### Insert solution box here
+[solution]
 ``` swift
 class ChatRoom {
     ...
@@ -250,6 +256,7 @@ On the server side we can see that our event listeners are outputting event emit
 
 On the server side the way we are keeping track of this is that we are storing the socket username with the corresponding socket id inside local storage. The goal of this is to be able to check if that username already exists.
 
+[info]
 ``` swift
     # Code snippet taking from the node backend
 
@@ -287,7 +294,7 @@ On the other hand when listening for the valid username event handler we want to
 
 Lets add two event listeners to our Chat Room file, one being for the usernameCollision and the other being for a valid username.
 
-#### Insert solution box here
+[action]
 ``` swift 
     func eventListeners() {
         ... 
@@ -324,16 +331,15 @@ To do this we need to create a protocol, navigate over to the protocols file loc
 
 Take a minute to add a protocol with the skeletal function called transitionToRoom
 
-#### Insert solution box here
 
-#### Change sender and receiver to delegator and delegating object
+[solution]
 ``` swift
 protocol RoomTransition: class {
-    func transitionToRoom() {} // Will populate with logic when receiver conforms to protocol
+    func transitionToRoom() // Will populate with logic when receiver conforms to protocol
 }
 
 protocol UsernameDelegate: class {
-    func usernameCollision
+    func usernameCollision()
 }
 ```
 
@@ -345,7 +351,7 @@ The receiver is going to be the CreateUserViewController because once it receive
 
 Take some time to implement the delegate on the sender side and for the receiver to conform to our protocol.
 
-#### Insert solution box
+[solution]
 ``` swift
     class ChatRoom {
         ... 
@@ -365,7 +371,7 @@ Now that we have implemented our sender lets make our receiver conform to our Ro
 
 Take a moment to make our receiver conform to our Room Transition protocol
 
-#### Insert solution box here
+[solution]
 ``` swift
     class CreateUserViewController : UIViewController, UsernameDelegate {
         ... 
@@ -395,7 +401,7 @@ We've implemented functionality concerning if two users were to enter the chat w
 
 #### Take a moment to execute the same functionality but for our room transition protocol
 
-#### Insert solution box here
+[solution]
 ```  swift
     class ChatRoom {
         ... 
