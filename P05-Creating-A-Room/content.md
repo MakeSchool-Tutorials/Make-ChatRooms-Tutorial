@@ -12,6 +12,7 @@ First lets create our table view that is going to be responsible for displaying 
 
 Lets create a file in our controllers folder called **RoomsTableViewController**
 
+[action]
 ``` swift
 class RoomsTableViewController: UITableViewController {
     override func viewDidLoad() {
@@ -27,7 +28,8 @@ class RoomsTableViewController: UITableViewController {
 Now that we have created the Rooms Table View file lets add the intended methods that will allow us to make operations on the Table View.
 
 Take a minute to add the delegate and data source methods numberOfRowsInSection, cellForRowAt, didSelectRowAt
-#### Insert Solution Box here
+
+[action]
 ``` swift
 class RoomsTableViewController: UITableViewController {
     ... 
@@ -49,7 +51,8 @@ Now that we have these stub methods inserted lets add some functionality to this
 We know that there is going to be cells displaying the name of the room therefore lets create a UITableViewCell that is going to be used throughout our UITableViewController.
 
 Take a minute to create your table view cell and to register it in the view did load method of our table view controller
-#### Add solution box here 
+
+[solution]
 ``` swift
 class ConfigureCell: UITableViewCell {}
 
@@ -69,8 +72,8 @@ If we navigate to our cellForRowAt method this is where we will be configuring o
 
 Take a minute to dequeue (return) a cell with the same identifier as the cell that we made earlier! 
 
-Insert Solution box here
 
+[solution]
 ``` swift
 class RoomsTableViewController: UITableViewController {
     ... 
@@ -88,6 +91,7 @@ class RoomsTableViewController: UITableViewController {
 
  The number of cells that we want to appear directly corresponds to the number of rooms that the user is actively in! Lets create an array at the top of the file that is used to keep track of the rooms that the user is actively in!
 
+[solution]
  ``` swift
     class RoomsTableViewController : UITableViewController {
 
@@ -111,7 +115,7 @@ class RoomsTableViewController: UITableViewController {
 
  Take a minute to implement a bar button programatically.
 
-#### Insert solution box here
+[solution]
 ``` swift
     //     MARK TODO: Can these UIElements be extracted to a helper file?
 
@@ -136,7 +140,7 @@ Lets create a method called createRoom(), dont forget to prefix the method defin
 
 Take some time to create an alert view that asks for the room name. Make sure to add save and cancel actions to allow our user to proceed in the application.
 
-#### Insert solution box here
+[solution]
 ``` swift
      @objc func createRoom(sender: UIBarButtonItem) {
         print("User wants to create a room")
@@ -176,7 +180,8 @@ Take some time to create an alert view that asks for the room name. Make sure to
 Great now lets run our code ... but wait we never implemented a way to transition between our create user view to our rooms table view.
 
 Lets add the functionality inside our delegate method transitionToRoom to push the RoomsTableViewController on top of the stack.
-#### Insert solution box here
+
+[solution]
 ``` swift
 class CreateUserViewController : UIViewController {
     ...
@@ -207,6 +212,7 @@ When the user taps the creates a room button we want to emit an event to our ser
 
 Inside the alert controller we presented lets call our chat room method join room.
 
+[action]
 ``` swift
     let saveAction = UIAlertAction(title: "Create/Join Room", style: .default) { (action) in
             guard let roomName = createRoomAlert.textFields?[0].text,
@@ -222,7 +228,7 @@ Inside the alert controller we presented lets call our chat room method join roo
 
 Wait ... we don't have a join room method, lets create one!
 
-#### Insert a solution box here
+[solution]
 ``` swift
     class ChatRoom {
         ...
@@ -234,6 +240,7 @@ Wait ... we don't have a join room method, lets create one!
 ```
 When asked to join a room our node server is listening for an event title _join room_ as you can see in the code snippet below.
 
+[info]
 ``` swift
      // Triggered when a user wants to create/join a room
     socket.on("joinRoom", function (roomName) {
@@ -250,7 +257,7 @@ Since our server is listening for this event lets do our duty and trigger it fro
 
 Take a moment to add an event emitter inside the joinRoom method we made
 
-#### Insert solution box here
+[solution]
 ``` swift
     class ChatRoom {
         func joinRoom(room: Room) {
