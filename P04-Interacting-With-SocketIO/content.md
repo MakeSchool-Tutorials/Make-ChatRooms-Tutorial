@@ -2,6 +2,7 @@ Going back to the top-down approach to programming what we have done is already 
 
 The next step is to add the functionality of actually creating a user. To do this we need to emit or trigger an event on our server to do this event.
 
+[info]
 ``` javascript
    // Code snippet from this project's backend, can be found in server js
 
@@ -18,12 +19,14 @@ First let's create a Podfile, a file that lists out the dependencies that are us
 
  Execute these sequence of commands in this starter kit directory in terminal.
 
+[action]
 ```
  pod init // Creates a new podfile
 ```
 
 Now that we have our podfile lets add the dependency that we want to install, add this command inside your podifle
 
+[action]
 ```
 ...
  pod 'Socket.IO-Client-Swift'
@@ -31,6 +34,7 @@ Now that we have our podfile lets add the dependency that we want to install, ad
 
 Once that has been saved to the pod file run 
 
+[action]
 ```
 pod install
 ```
@@ -41,12 +45,14 @@ Now that we created a successful workspace with our Socket IO dependency added l
 
 First lets import our newly added dependency 
 
+[action]
 ``` swift
 import SocketIO
 ```
 
 The next step before we can connect to our server is that we have to tell Socket IO to connect to our server running on port 4000! That is the default port that the server is running, this can be changed to a port of your choice.
 
+[action]
 ``` swift
 class ChatRoom {
     port = 4000 // This is your choice
@@ -66,6 +72,7 @@ Now that we have created a socket instance that represents the individual connec
 
 Let us add an initalizer to this class, upon initialization of this class we want the first thing our socket to do is connect to our server.
 
+[action]
 ``` swift
 init() {
     // In charge of connecting to the server!
@@ -75,8 +82,6 @@ init() {
 
 At this point in time we are able to connect but no way to actually execute this code. The approach that we wanted to take was when the user presses the join chat room button in the intial view for this class to be instantiated and the socket connection to be made!
 
-### Have to refactor this portion right here and make it more semantic
-
 There are **event emitters** and **event listeners** that are used to be able to listen for events and data and respond accordingly.
 
 For example in the code snippet taken from our server at the top of this page, our socket is listening for when a client emits or sends their username and it responds accordingly but logging a statement to the terminal.
@@ -85,6 +90,7 @@ As we mentioned earlier this communication can be bi-directional meaning that th
 
 
 To listen out for events that our server has emitted we can use the on method which listens out for an event when triggered. For example ...
+
 
 ``` swift
 socket.on("specificEvent") { (data, ack) in 

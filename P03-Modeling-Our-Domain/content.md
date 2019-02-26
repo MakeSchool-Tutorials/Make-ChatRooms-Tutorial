@@ -66,5 +66,4 @@ From now on when referencing our current user we will be doing so through are sh
 Congrats you have modeled the domain for two objects that we have been working with thus far!
 
 
-In the next page of the tutorial we are going to using our users 
-#### Should they refactor previous code to  be able to pass the object as oppose to the value for the attribute (username and room name)?
+In the next page of the tutorial we are going to start interacting with **Socket.IO** using the client wrapper!

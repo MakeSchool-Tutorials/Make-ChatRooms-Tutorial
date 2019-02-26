@@ -76,7 +76,7 @@ Inside lets create a function that is in charge of initializing the view when ca
 
 Now that we have the corresponding swift file we can connect our UIElements to code!
 
-[action]
+[solution]
 ``` swift
 
 class CreateUserView: UIView {
