@@ -89,6 +89,7 @@
 		1C046705221B30EE00EFCC5F /* Make-ChatRooms-StarterKit */ = {
 			isa = PBXGroup;
 			children = (
+				1C05E2C12224ECFD00C438A9 /* Extensions */,
 				1C046729221B317B00EFCC5F /* Models */,
 				1C046726221B315100EFCC5F /* Views */,
 				1C04672B221B318600EFCC5F /* Controllers */,
@@ -160,6 +161,13 @@
 			children = (
 			);
 			path = Controllers;
+			sourceTree = "<group>";
+		};
+		1C05E2C12224ECFD00C438A9 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
