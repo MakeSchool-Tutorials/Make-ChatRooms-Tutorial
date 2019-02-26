@@ -15,7 +15,7 @@ Lets first map out attributes that our message would contain.
 
 ``` swift
 
-class Message: Codable {
+class Message {
     let messageContent: String
     let senderUsername: String
     var messageSender: Bool?
@@ -30,25 +30,77 @@ class Message: Codable {
 }
 
 ```
+ 
+ Here is where the nuance comes in of sending objects over the interconnected webs. Since we are sending a complex object that is composed of more than your average string or integer we are going to have to **encode** our message objects into a JSON representation, so that it can be sent over the web.
 
+ Take a moment to make your Message class in the models folder conform to the codable protocols.
 
+ #### Insert solution box here
+ ``` swift
+class Message: Codable {
+        ...
+        private enum CodingKeys: String,CodingKey {
+        case messageContent
+        case senderUsername
+        case messageSender
+        case roomOriginName
+    }
 
+   required convenience init(from decoder: Decoder) {
+        // ACTION: Change these from let to var
+        let container = try? decoder.container(keyedBy: CodingKeys.self)
+        let messageContent = try? container?.decode(String.self, forKey: .messageContent) ?? ""
+        let senderUsername = try? container?.decode(String.self, forKey: .senderUsername) ?? ""
+        var messageSender = try? container?.decodeIfPresent(Bool.self, forKey: .messageSender) ?? false
+        let roomOriginName = try? container?.decode(String.self, forKey: .roomOriginName) ?? ""
+        
+        // Force unwrapping may prove to hurt in the future, let's see how we can safely unwrap these values!
+        self.init(messageContent: messageContent ?? "", senderUsername: senderUsername ?? "", messageSender: messageSender, roomOriginName: roomOriginName ?? "")
+    }
+}
+ ```
 
-1. We are listening for the event emitter called _message_ and with the data passed with that event we are going to print the incoming messages content!
+Our event listener in the backend is listening for the chat message event emitter and is expecting a message object to come with it when the event is emitted.
+``` javascript
+# Code snippet from node backend
+socket.on('chat message', function (message) { // Listening for an incoming chat message
+        username = getKeyByValue(localStorage, socket.id)
+        parsedMessage = JSON.parse(message) // Converts message JSON string into a JSON Object
 
-Now that we have seen the event listener of the server side lets create an event emitter on our client side to see the intended log statement inside our terminal!
+        console.log("Incoming Message -> ", parsedMessage)
+        console.log("Message sent from -> ( ", username, " ", socket.id, ")")
+        socket.broadcast.to(parsedMessage.roomOriginName).emit('chat message', message) // Broadcasts message to everyone in the room that the message was sent from except the sender
+});
+
+```
+
+Now that we have seen the event listener of the server side lets create an event emitter on our client side to see the intended log statement inside our terminal.
 
 Take a moment to create a method inside our Chat Room class that emits a message event
 
 #### Insert a solution box here
-```
+``` swift
     class ChatRoom {
         ...
-        func sendMessage(messageContent: String) {
-            socket.emit("message", messageContent)
+        func sendMessage(message: Message) {
+            
         }
     }
 ```
+
+Now that we have created our event emitter we need to be able to emit the message object over the network therefore lets put our codable conformance to work!
+
+``` swift
+    class ChatRoom {
+        ...
+        func sendMessage(message: Message) {
+            guard let jsonData = try? JSONEncoder().encode(message) else {return} // Have to encode because message object isnt a native json object
+            
+            self.socket.emit(`"chat message", jsonData)
+        }
+    }
+```
+
 
 Since we don't have an interface yet for a user to send a message lets create a message stub that we are going to emit from our server
 
