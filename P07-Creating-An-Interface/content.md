@@ -1,17 +1,19 @@
 ## Creating a Chat Room Interface
 
-We have finally made it! The last step in our tutorial into making our chat room application. In this portion of the tutorial we are going to be creating our chat interface so we can send and receive messages to and from users!
+We have finally made it to the last step in the tutorial. In this portion of the tutorial we are going to be creating our chat interface so we can send and receive messages to and from users.
 
 
 First lets create a message input view that is in charge of extracting user input and directing it to our controller logic.
 
-Take a moment to create a MessageInputView file inside our views folder!
+![messageInputView](./assets/MessageInputView.png)
+This is what the finished component will look like.
 
-Here is some started code to create our messaging view
+Take a moment to create a MessageInputView file inside our views folder.
 
-``` swift
+Here is some starter code to create our messaging view.
 
 [action]
+``` swift
 class MessageInputView: UIView{
     
     
@@ -98,7 +100,7 @@ Take a moment to create a ChatRoomViewController inside our controllers folder
 }
 
 ```
-We are using a table view to display the messages in rows. In our helpers folder lets **uncomment the logic in layouts.swift**. This file is responsible for boilerplate designing on our chat interface. We will be referencing this file throughout the rest of the tutorial!
+We are using a table view to display the messages in rows. In our helpers folder lets **uncomment the logic in ChatRoomExtension.swift**. This file is responsible for the boilerplate code that goes into designing our chat interface. We will be referencing this file throughout the rest of the tutorial.
 
 Great! Now that we have created a controller that instantiates our message input view lets run it. There is still one small problem though, there is no way to get to this view.
 
@@ -119,7 +121,7 @@ Take a break you deserve it! The next step is to notify our controller that the 
 
 To notify our controller that the user pressed send from the Message Input View we need to create a protocol in order to do this.
 
-Take a moment to create a protocol and skeletal function in charge of notifying the controller that the send button was tapped.
+Take a moment to create a protocol and a skeletal function in charge of notifying the controller that the send button was tapped.
 
 [solution]
 ``` swift
@@ -143,7 +145,7 @@ Now that we have created the protocol lets take a moment to add a delegate to ou
     }
 ```
 
-Now that we have implemented the delegator side of the equation lets make our controller conform to our new protocol. Through separation of concerns lets put this file inside the extensions folder!
+Now that we have implemented the delegator side of the equation lets make our controller conform to our new protocol. Through separation of concerns lets put this file inside the extensions folder.
 
 ``` swift
 extension ChatRoomViewController : MessageInputViewDelegate {
@@ -166,7 +168,7 @@ Did you remember to also mark the receiver of the Chat Room delegate as self?
     }
 ```
 
-Take a moment to implement trigger our send message method inside our ChatRoom with the given message contents. To do so we need to formulate our message object. 
+Take a moment to trigger our send message method inside our ChatRoom with the given message contents. To do so we need to formulate our message object. 
 
 We currently have a blocker ... we have no access to the room name that the user is currently in!
 
@@ -186,9 +188,9 @@ Take a moment to find a way to transmit the room name from when the user selects
     }
 ```
 
-Now that we have access to the last missing attribute inside our message object lets continue to formulate our message object and send it to our chat room logic
+Now that we have access to the last missing attribute inside our message object lets continue to formulate it  and send it to our chat room logic.
 
-Your sendWasTapped method should now look like this
+Your sendWasTapped method should now look like this.
 
 [info]
 ``` swift
@@ -204,8 +206,10 @@ Your sendWasTapped method should now look like this
 
 Great! Lets run the code now. When you press send it should emit the message event to our server ... but nothing shows up on the screen lets fix that!
 
+![insertMessageCell](./assets/InsertMessageCell.gif)
+
 First we are going to need to create an array that is going to store our message objects.
-Take a moment to add a messages array to our ChatRoomViewController!
+Take a moment to add a messages array to our ChatRoomViewController.
 
 [action]
 ``` swift
@@ -244,11 +248,11 @@ extension ChatRoomViewController: UITableViewDataSource, UITableViewDelegate {
     
 }
 ```
-Now that we have the proper methods corresponding to our table view lets add some functionality! 
+Now that we have the proper methods corresponding to our table view lets add some functionality. 
 
-Lets implement a helper method that allows us to insert a message cell into the view without having to reload the table view. For example if every time you sent a message to someone the whole screen reloaded that would get quite annoying!
+Let's implement a helper method that allows us to insert a message cell into the view without having to reload the table view. For example if every time you sent a message to someone the whole screen reloaded that would get quite annoying.
 
-Lets add the insertNewMessageCell method to our ChatRoomViewController extension.
+Let's add the insertNewMessageCell method to our ChatRoomViewController extension.
 
 [action]
 ``` swift
@@ -268,11 +272,13 @@ extension ChatRoomViewController: UITableViewDataSource, UITableViewDelegate {
 
 ```
 
-Great! We are one step closer to visually outputting our messages inside our chat interface!
+Great! We are one step closer to visually outputting our messages inside our chat interface.
 
 Now that we have appended that message to our messages array we want to be able to apply those contents to our cell in each row.
 
 To do this we are first going to need to create a custom Table View Cell, I called mine **MessageTableViewCell**. This cell is going to be in charge of displaying our message contents and other corresponding information.
+
+Concerning the layout of our chat interface, credit is all given to the [ray wenderlich tutorial for creating a chat application](https://www.raywenderlich.com/537-real-time-communication-with-streams-tutorial-for-ios). The logic we are directly concerned with is the layout of our messages depending of who the message sender is.
 
 [info]
 ``` swift
@@ -355,7 +361,7 @@ extension ChatRoomViewController: UITableViewDataSource, UITableViewDelegate {
     }
 ```
 
-We can now call our insertMessageCell method inside of our sendWasTappedMethod inside our ChatRoom extension that conforms to our message delegate
+We can now call our insertMessageCell method inside of our sendWasTapped Method.
 
 [action]
 ``` swift
@@ -385,7 +391,7 @@ protocol ReceivedMessage: class {
     func receivedMessage()
 }
 ```
-When we receive a message our event listener **chat message** is triggered, lets decode the incoming data into our Message model that we have made. Once you have done so lets trigger our received message delegate with the newly decoded message object.
+When we receive a message our event listener **chat message** is triggered, lets **decode** the incoming data into our Message model that we have made. Once you have done so lets trigger our received message delegate with the newly decoded message object.
 
 [solution]
 ``` swift 
@@ -403,7 +409,7 @@ class ChatRoom {
 }
 ```
 
-Take a moment to create an extension of our ChatRoomViewController that conforms to our newly created protocol!
+Take a moment to create an extension of our ChatRoomViewController that conforms to our newly created protocol.
 
 [action]
 ``` swift
@@ -423,7 +429,7 @@ Take a moment to create an extension of our ChatRoomViewController that conforms
 
 1. We are setting our message sender to false due to our logic contained inside the MessageTableViewCell extension file
 
- - ``` swift
+    - ``` swift
         ... 
          //ACTION: Set the right color and position for each message depending on whos the sender
             if self.message?.messageSender == true {
@@ -443,10 +449,10 @@ Take a moment to create an extension of our ChatRoomViewController that conforms
         }
     ```
 
-2. Based off the message sender we know how to configure the message cell correctly ... this will result in a gray message bubble being inserted as opposed to a green message bubble when we are the message sender
+2. Based off the message sender we know how to configure the message cell correctly ... this will result in a gray message bubble being inserted as opposed to a green message bubble when we are the message sender.
 
 
 #### Insert GIF here
 
 
-Great! Now we are able to send and receive messages through our interface! The rest of the tutorial contains stretch challenges and possible refactors that can be made!
+Great! Now we are able to send and receive messages through our interface! The rest of the tutorial contains stretch challenges and possible refactorings that can be made!

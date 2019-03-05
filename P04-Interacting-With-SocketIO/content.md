@@ -203,7 +203,7 @@ We have seen the ability to be able to listen to events from our server, but wha
 
 If we look back at the code snippet at the start of the file we can see the event listener on the server listening for a username. Our goal is to trigger this event with the corresponding event name. Our server is listening for certain events therefore it's our job to make sure that we name them correctly on both the front-end and the backend.
 
-Take a minute to see if you can emit an event from ours socket
+Take a minute to see if you can emit an event from ours socket.
 
 [solution]
 ``` swift
@@ -256,7 +256,7 @@ Now that we have an understanding of what the backend is doing behind the scenes
 
 From the client perspective we are going to be listening out for these two events. Before we start to implement lets go over the desired output of each situation.
 
-When listening for the username collision event handler if triggered we want to display an alert to the user saying that someone connected already has that username
+When listening for the username collision event handler if triggered we want to display an alert to the user saying that someone connected already has that username.
 
 On the other hand when listening for the valid username event handler we want to transition to the next view.
 
@@ -286,11 +286,11 @@ Lets add two event listeners to our Chat Room file, one being for the usernameCo
 
 2. If the validUsername event handler is triggered we then want to store the username in User Defaults.
 
-As we mentioned earlier if there is a username collision we want to display an alert to the user that they have to re-type their username!
+As we mentioned earlier if there is a username collision we want to display an alert to the user that they have to re-type their username.
 
 #### Introducing delegates!
 
-At this point in time this is assuming you have a basic understanding on how delegates are used to pass information between delegators and delegate receivers but if not feel free to read more on [delegates](https://www.appcoda.com/swift-delegate/)
+At this point in time this is assuming you have a basic understanding on how delegates are used to pass information between delegators and delegate receivers but if not feel free to read more on [delegates](https://www.appcoda.com/swift-delegate/).
 
 The delegate we are going to create is going to be in charge of notifying our Chat Room View Controller to display an alert!
 
@@ -336,7 +336,7 @@ Take some time to implement the delegate on the sender side and for the receiver
 
 Now that we have implemented our sender lets make our receiver conform to our Room Transition protocol so that when the delegate function is triggered we can respond accordingly.
 
-Take a moment to make our receiver conform to our Room Transition protocol
+Take a moment to make our receiver conform to our Room Transition protocol.
 
 [solution]
 ``` swift
@@ -359,7 +359,7 @@ Take a moment to make our receiver conform to our Room Transition protocol
     }
 ```
 
-To test this functionality if we add two simulators side by side and enter the chat with the same username the second simulator should appear with an alert view asking you to re-type your username!
+To test this functionality if we add two simulators side by side and enter the chat with the same username the second simulator should appear with an alert view asking you to re-type your username.
  * To run two simulators side by side run the project on the iPhone 8 and the iPhone 7
 
 ![UsernameCollision](./assets/UsernameCollision.gif)
@@ -404,11 +404,11 @@ We've implemented functionality concerning if two users were to enter the chat w
     }
 ```
 
-This function will be triggered if our event listener for a username collision is triggered! As we can see the flow of communication starts from what the server responds back with initially.
+This function will be triggered if our event listener for a username collision is triggered. As we can see the flow of communication starts from what the server responds back with initially.
 
 ![SuccessfulUsername](./assets/SuccessfulUsername.gif)
 In the next part of the tutorial we will transition to our list of active rooms. Stay tuned!
 
-Awesome you have now mirrored interactions between server and client, learned about event emitters and listeners, and one step closer to creating your real time messaging application!
+Awesome you have now mirrored interactions between server and client, learned about event emitters and listeners, and one step closer to creating your real time messaging application.
 
 In this section of the tutorial we went over assigning a username to an individual socket connection. Learned to use delegates to either display an alert or transition to the next view. In the next portion we will be able to join and create a room! One step closer to being able to communicate with other users.

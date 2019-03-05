@@ -81,11 +81,11 @@ socket.on('chat message', function (message) { // Listening for an incoming chat
 #####
 2. We then convert the json string representation that we made when we encoded the message object on the client side and turn it into a JSON object
 #####
-3. We then broadcast that message back to every user in the chat **excluding** the user who sent the message 
+3. The broadcast method emits events to every socket connection **excluding** the socket connection that trigerred the event aka you.
 
 Now that we have seen the event listener of the server side lets create an event emitter on our client side to see the intended log statement inside our terminal.
 
-Take a moment to create a method inside our Chat Room class that emits a message event
+Take a moment to create a method inside our Chat Room class that emits a message event.
 
 [solution]
 ``` swift
@@ -112,10 +112,10 @@ Now that we have created our event emitter we need to be able to emit the messag
 ```
 
 
-Since we don't have an interface yet for a user to send a message lets trigger it implicitly.
+Since we don't have an interface yet for a user to send a message lets trigger it explicitly.
 Lets navigate to our RoomsTableViewController.
 
-Inside our create room method ... inside the save action lets formulate a message object to emit
+Find our create room method and inside the save action lets formulate a message object to emit.
 
 [solution]
 ``` swift
@@ -149,4 +149,4 @@ Great! Lets run the code. You should now see output that looks like this!
     }
 ```
 
-Now that we are able to successfully emit a message from our client and receive it on the server, in the next part of the tutorial lets make an interface to be able to send and receive messages!
+Now that we are able to successfully emit a message from our client and receive it on the server, in the next part of the tutorial lets make an interface to be able to send and receive messages.
