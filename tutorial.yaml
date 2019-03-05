@@ -1,0 +1,6 @@
+title: "Make Chat Rooms Tutorial"
+cover: cover.png
+solution_url: https://github.com/MakeSchool-Tutorials/Tutorial-Template/
+teaser_text: |
+    This tutorial is an introduction to Socket IO and real time messaging.
+    The goal is to create a small app that allows users to create chatrooms and chat with existing users in real time!
