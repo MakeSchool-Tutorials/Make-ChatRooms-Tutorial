@@ -452,7 +452,7 @@ Take a moment to create an extension of our ChatRoomViewController that conforms
 2. Based off the message sender we know how to configure the message cell correctly ... this will result in a gray message bubble being inserted as opposed to a green message bubble when we are the message sender.
 
 
-#### Insert GIF here
+![Chat](./assets/Chat.gif)
 
 
 Great! Now we are able to send and receive messages through our interface! The rest of the tutorial contains stretch challenges and possible refactorings that can be made!
